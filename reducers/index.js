@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import AuthReducer from './AuthReducer';
+import FBAuthReducer from './FBAuthReducer';
 import CourseListReducer from './CourseListReducer';
 import ScorecardFormReducer from './ScorecardFormReducer';
 
 export default combineReducers({
-  auth: AuthReducer,
+  auth: FBAuthReducer,
   courses: CourseListReducer,
   scorecardForm: ScorecardFormReducer,
 });
