@@ -1,24 +1,26 @@
 import React, { Component } from 'react';
 import { Text, Image, View, TouchableWithoutFeedback } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Card, CardSection } from './common';
+import { connect } from 'react-redux';
+import { courseDetailsFetch } from '../actions';
+import { Card, CardSection, ImageSection } from './common';
 
 class CourseListItem extends Component {
 
-  onRowPress() {
-    Actions.courseDetails({ courseId: this.props.course.course_id });
+  onRowPress = () => {
+    this.props.courseDetailsFetch(this.props.course.course_id, () => { Actions.courseDetails(); });
   }
 
   render() {
     const { name, rating } = this.props.course;
 
     return (
-      <TouchableWithoutFeedback onPress={this.onRowPress.bind(this)}>
+      <TouchableWithoutFeedback onPress={this.onRowPress}>
         <View>
           <Card>
-            <CardSection>
+            <ImageSection>
               <Image source={{ uri: 'https://www.dgcoursereview.com/course_pics/5/710589e1_m.jpg' }} style={styles.imageStyle} />
-            </CardSection>
+            </ImageSection>
 
             <CardSection>
               <View>
@@ -49,4 +51,4 @@ const styles = {
   },
 };
 
-export default CourseListItem;
+export default connect(null, { courseDetailsFetch })(CourseListItem);
