@@ -24,31 +24,7 @@ class ScorecardForm extends Component {
   onBeginScorecard() {
     const { player1, player2, player3, player4, } = this.state;
     const players = { player1, player2, player3, player4 };
-    // const { holeDetails } = this.props;
-    // const courseId = holeDetails[0].course_id;
-    // const holes = (holeDetails.length) - 1;
-    // const getDate = new Date();
-    // const currentDate = (currentDate.getMonth()+1) + '/'
-    //                 + currentDate.getDate() + '/'
-    //                 + currentDate.getFullYear();
-    //
-    // console.log(currentDate);
 
-    // const scorecardInfo = {
-    //   details: {
-    //     courseId,
-    //     holes,
-    //     datetime
-    //   },
-    //   playerNames: {
-    //     player1,
-    //     player2,
-    //     player3,
-    //     player4,
-    //   }
-    // };
-
-    // this.props.saveScorecard({ scorecardInfo });
     this.props.savePlayers({ players })
     Actions.gamePlay();
   }
