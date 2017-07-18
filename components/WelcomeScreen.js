@@ -29,7 +29,7 @@ class WelcomeScreen extends Component {
 
   // programatic navigation
   onSlidesComplete = () => {
-    Actions.courseList();
+    Actions.login();
   }
 
   // instead of this.onSlidesComplete.bind(this) can also use an arrow function
