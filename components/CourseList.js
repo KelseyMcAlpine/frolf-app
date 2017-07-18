@@ -1,42 +1,47 @@
 // import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ListView } from 'react-native';
+import { ScrollView, Text } from 'react-native';
 import { courseListFetch } from '../actions';
 import CourseListItem from './CourseListItem';
 
 class CourseList extends Component {
+  state = { coursesloading: true };
 
   componentWillMount() {
     const userLat = 43.0001;
     const userLon = -77.6109;
-    this.props.courseListFetch({ userLat, userLon });
-    this.createDataSource(this.props);
+    console.log('component will mount props', this.props);
+    this.props.courseListFetch(() => { console.log(' course list fetch callback'); });
+    // this.createDataSource(this.props);
   }
 
   componentWillReceiveProps(nextProps) {
-    this.createDataSource(nextProps);
+    this.setState({ coursesLoading: false });
+    console.log('next props', nextProps);
   }
 
-  createDataSource({ courses }) {
-    const ds = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2
+  renderCourses() {
+    return this.props.courses.map(course => {
+      return (
+        <CourseListItem course={ course } />
+      );
     });
-
-    this.dataSource = ds.cloneWithRows(courses);
   }
 
-  renderRow(course) {
-    return <CourseListItem course={course} />;
-  }
 
   render() {
+    console.log('render props', this.props);
+
+    if (this.coursesLoading){
+      console.log('>>>>>>>>>>>>>>>>>>>>')
+      return <Text>Loading</Text>
+    }
+
     return (
-      <ListView
-        enableEmptySections
-        dataSource={this.dataSource}
-        renderRow={this.renderRow}
-      />
+      <ScrollView>
+        {this.renderCourses()}
+      </ScrollView>
     );
   }
 }

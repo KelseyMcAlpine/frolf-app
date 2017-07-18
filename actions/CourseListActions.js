@@ -6,33 +6,15 @@ import {
   COURSE_DETAILS_FETCH_SUCCESS
 } from './types';
 
-export const courseListFetch = () => {
-  return (dispatch) => {
-      axios.get('https://api.myjson.com/bins/12qesz')
-      // add { userLat and userLon } to props
-      // axios.get('https://www.dgcoursereview.com/api_test/index.php', {
-      //     params: {
-      //       key: DG_API_KEY,
-      //       mode: 'near_rad',
-      //       lat: userLat,
-      //       lon: userLon,
-      //       rad: 25,
-      //       sig: DG_RADIUS_LIST_SIG
-      //     }
-      //   })
-        .then((response) => {
-          dispatch({
-            type: COURSE_LIST_FETCH_SUCCESS,
-            payload: response.data
-          });
-          Actions.courseList();
-        })
-        .catch((err) => {
-          console.log('error: ', err);
-        });
-      //
-    };
-  };
+export const courseListFetch = (callback) => async (dispatch) => {
+  try {
+    let { data } = await axios.get('https://api.myjson.com/bins/12qesz');
+    dispatch({ type: COURSE_LIST_FETCH_SUCCESS, payload: data });
+    callback();
+  } catch(e) {
+    console.error(e);
+  }
+};
 
 export const courseDetailsFetch = () => {
   return (dispatch) => {
