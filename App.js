@@ -25,6 +25,7 @@ class App extends Component {
       storageBucket: FIREBASE_STORAGE,
       messagingSenderId: FIREBASE_SENDER_ID
     };
+    console.log(' in app component will mount. Config: ', config);
     firebase.initializeApp(config);
   }
 

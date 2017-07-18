@@ -24,7 +24,7 @@ class CourseList extends Component {
   renderCourses() {
     return this.props.courses.map(course => {
       return (
-        <CourseListItem course={ course } />
+        <CourseListItem key={ course.course_id } course={ course } />
       );
     });
   }
