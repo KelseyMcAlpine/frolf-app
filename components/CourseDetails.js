@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Text, View, ActivityIndicator, ScrollView, Image } from 'react-native';
-import { Button, Card, CardSection, Spinner, ImageSection } from '../components/common';
+import { Button, Card, CardSection, Spinner, ImageSection, Rating } from '../components/common';
 import { courseDetailsFetch, createScorecardForm } from '../actions';
 import { MapView } from 'expo';
 
@@ -78,7 +78,11 @@ class CourseDetails extends Component {
           </ImageSection>
 
           <CardSection>
-            <Text>{name} and rating: {rating}</Text>
+            <Text>{name}</Text>
+          </CardSection>
+
+          <CardSection>
+            <Rating rating={rating} />
           </CardSection>
 
           <CardSection>
