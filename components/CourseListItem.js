@@ -4,11 +4,44 @@ import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { courseDetailsFetch } from '../actions';
 import { Card, CardSection, ImageSection } from './common';
+import { FontAwesome } from '@expo/vector-icons';
 
 class CourseListItem extends Component {
 
   onRowPress = () => {
     this.props.courseDetailsFetch(this.props.course.course_id, () => { Actions.courseDetails(); });
+  }
+
+  displayRating(rating) {
+    let displayRating = [];
+
+    const wholeStars = Math.floor(rating);
+    const halfStars = ( rating - wholeStars >= .5 ? 1 : 0 );
+    const emptyStars = ( 5 - wholeStars - halfStars );
+
+    for (let i = 0; i < wholeStars; i++) {
+      displayRating.push(
+        <FontAwesome name="star" size={32} color="green" />
+      );
+    }
+
+    for (let i = 0; i < halfStars; i++) {
+      displayRating.push(
+        <FontAwesome name="star-half-full" size={32} color="green" />
+      );
+    }
+
+    for (let i = 0; i < emptyStars; i++) {
+      displayRating.push(
+        <FontAwesome name="star-o" size={32} color="green" />
+      );
+    }
+
+    return (
+      <View style={styles.starRatingContainer}>
+        {displayRating}
+      </View>
+    );
   }
 
   render() {
@@ -27,8 +60,8 @@ class CourseListItem extends Component {
                 <Text>{name}</Text>
                 <View>
                   <Text>Distance</Text>
-                  <Text>Rating: {rating}</Text>
                 </View>
+                {this.displayRating(rating)}
               </View>
             </CardSection>
           </Card>
@@ -48,6 +81,13 @@ const styles = {
     height: 250,
     flex: 1,
     width: null,
+  },
+
+  starRatingContainer: {
+    height: 40,
+    width: 100,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 };
 
