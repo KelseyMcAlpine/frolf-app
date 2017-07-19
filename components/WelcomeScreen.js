@@ -16,7 +16,7 @@ class WelcomeScreen extends Component {
 
   async componentWillMount() {
     // used to clear token temporarily
-    // AsyncStorage.removeItem('fb_token');
+    AsyncStorage.removeItem('fb_token');
     const token = await AsyncStorage.getItem('fb_token');
 
     if (token) {
@@ -29,7 +29,7 @@ class WelcomeScreen extends Component {
 
   // programatic navigation
   onSlidesComplete = () => {
-    Actions.login();
+    Actions.facebookLogin();
   }
 
   // instead of this.onSlidesComplete.bind(this) can also use an arrow function
