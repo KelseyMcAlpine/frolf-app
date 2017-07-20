@@ -15,7 +15,8 @@ class ScorecardForm extends Component {
     this.state = {
       showModal: false,
       playerCount: 1,
-      players: [user, 'ada']
+      players: [user, 'ada'],
+      addPlayerForm: null
     };
   }
 
@@ -30,12 +31,15 @@ class ScorecardForm extends Component {
     Actions.gamePlay();
   }
 
-  onAccept() {
-    console.log('in on accept');
+  onAddPlayer() {
+    const playersArray = this.state.players.slice()
+    playersArray.push(this.state.addPlayerForm);
+
+    this.setState({ addPlayerForm: null, showModal: false, players: playersArray });
   }
 
-  onDecline() {
-    this.setState({ showModal: false });
+  onCancelAddPlayer() {
+    this.setState({ addPlayerForm: null, showModal: false });
   }
 
   onChangeText() {
@@ -98,9 +102,9 @@ class ScorecardForm extends Component {
 
         <AddPlayerModal
           visible={this.state.showModal}
-          onAccept={this.onAccept.bind(this)}
-          onDecline={this.onDecline.bind(this)}
-          onChangeText={this.onChangeText.bind(this)}
+          onAccept={this.onAddPlayer.bind(this)}
+          onDecline={this.onCancelAddPlayer.bind(this)}
+          onChangeText={text => this.setState({ addPlayerForm: text })}
         />
       </Card>
     );
