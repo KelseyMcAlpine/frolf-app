@@ -1,5 +1,6 @@
 import { AsyncStorage } from 'react-native';
 import axios from 'axios';
+import firebase from 'firebase';
 import { Facebook } from 'expo';
 import {
   FACEBOOK_LOGIN_SUCCESS,
@@ -7,10 +8,13 @@ import {
   USER_INFO_FETCH_SUCCESS
 } from './types';
 
+
+
 export const facebookLogin = () => async dispatch => {
   const token = await AsyncStorage.getItem('fb_token');
   if (token) {
     dispatch({ type: FACEBOOK_LOGIN_SUCCESS, payload: token });
+    authenticate(token)
   } else {
     doFacebookLogin(dispatch);
   }
@@ -26,7 +30,15 @@ const doFacebookLogin = async (dispatch) => {
 
   await AsyncStorage.setItem('fb_token', token);
   dispatch({ type: FACEBOOK_LOGIN_SUCCESS, payload: token });
+  authenticate(token)
 };
+
+authenticate = (token) => {
+  console.log('in authenticate');
+  const provider = firebase.auth.FacebookAuthProvider
+  const credential = provider.credential(token)
+  return firebase.auth().signInWithCredential(credential)
+}
 
 export const getUserInfo = (token) => async (dispatch) => {
   try {
