@@ -11,12 +11,13 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 // no parenthesis because we dont want to call function
 // until user clicks on the button
 // onCompolete defined in welcome screen
+
 class Slides extends Component {
   renderLastSlide(index) {
     if (index === this.props.data.length - 1) {
       return (
         <Button
-          title='onwards'
+          title='Login with Facebook'
           raised
           buttonStyle={styles.buttonStyle}
           onPress={this.props.onComplete}
