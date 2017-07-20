@@ -6,8 +6,6 @@ import { courseDetailsFetch, createScorecardForm } from '../actions';
 import { MapView } from 'expo';
 
 class CourseDetails extends Component {
-  // starting and zoom level for mapview
-  // lon and lat are center
   constructor({courseDetails}){
     super({courseDetails});
     this.state = {
@@ -29,19 +27,16 @@ class CourseDetails extends Component {
   }
 
   componentDidMount() {
-    console.log('component did mount. course details: ', this.props.courseDetails);
     this.setState({ mapLoaded: true });
   }
 
   onRegionChangeComplete = (region) => {
-    // console.log(region);
     this.setState({ region });
   }
 
   onPressStart() {
-    console.log('1. pressed start button to create scorecard');
-    console.log('passing courseId: ', this.props.courseId);
-    this.props.createScorecardForm({ courseId: this.props.courseId });
+    const courseId = this.props.courseDetails.course_id;
+    this.props.createScorecardForm(courseId);
   }
 
   constructImageUrl() {
@@ -58,7 +53,6 @@ class CourseDetails extends Component {
   }
 
   render() {
-    console.log('in render. maploaded?', this.state.mapLoaded);
     if (!this.state.mapLoaded) {
       return (
         <View style={{ flex: 1, justifyContent: 'center' }}>

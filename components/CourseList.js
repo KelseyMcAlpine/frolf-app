@@ -13,7 +13,7 @@ class CourseList extends Component {
     const userLat = 43.0001;
     const userLon = -77.6109;
 
-    this.props.courseListFetch(() => { console.log('course list fetch callback'); });
+    this.props.courseListFetch(userLat, userLon, () => { console.log('course list fetch callback'); });
     this.props.getUserInfo(this.props.token);
   }
 

@@ -6,9 +6,19 @@ import {
   COURSE_DETAILS_FETCH_SUCCESS
 } from './types';
 
-export const courseListFetch = (callback) => async (dispatch) => {
+export const courseListFetch = (userLat, userLon, callback) => async (dispatch) => {
   try {
-    let { data } = await axios.get('https://api.myjson.com/bins/12qesz');
+    let { data } = await axios.get('https://www.dgcoursereview.com/api_test/index.php', {
+        params: {
+          key: DG_API_KEY,
+          mode: 'near_rad',
+          lat: userLat,
+          lon: userLon,
+          rad: 25,
+          sig: DG_RADIUS_LIST_SIG
+        }
+      }
+    );
     dispatch({ type: COURSE_LIST_FETCH_SUCCESS, payload: data });
     callback();
   } catch(e) {
@@ -18,27 +28,17 @@ export const courseListFetch = (callback) => async (dispatch) => {
 
 export const courseDetailsFetch = (courseId, callback) => async (dispatch) => {
   try {
-    let { data } = await axios.get('https://api.myjson.com/bins/ny42n');
-      // , {
-      //   params: {
-      //     key: DG_API_KEY,
-      //     mode: 'crseinfo',
-      //     id: 8,
-      //     sig: DG_COURSE_DETAILS_SIG
-      //   }
-      // });
+    let { data } = await axios.get('https://www.dgcoursereview.com/api_test/index.php', {
+      params: {
+        key: DG_API_KEY,
+        mode: 'crseinfo',
+        id: courseId,
+        sig: DG_COURSE_DETAILS_SIG
+      }
+    });
     dispatch({ type: COURSE_DETAILS_FETCH_SUCCESS, payload: data });
     callback();
   } catch(e) {
     console.error(e);
   }
 };
-// add { courseId } to constructor
-// axios.get('https://www.dgcoursereview.com/api_test/index.php', {
-//     params: {
-//       key: DG_API_KEY,
-//       mode: 'crseinfo',
-//       id: courseId,
-//       sig: DG_COURSE_DETAILS_SIG
-//     }
-//   })
