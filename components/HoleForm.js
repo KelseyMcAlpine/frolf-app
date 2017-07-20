@@ -5,9 +5,11 @@ import { Card, CardSection, Input } from './common';
 class HoleForm extends Component {
   renderPlayerInputs() {
     return this.props.players.map((player, index) => {
+      console.log('in hole form. player: ', player);
+      console.log('in hole form. index: ', index);
       return (
-        <View style={{ flexDirection: 'row', flex: 1 }}>
-          <Text>Player</Text>
+        <View style={{ flexDirection: 'row', flex: 1 }} key={index}>
+          <Text>{player}</Text>
           <Picker
             selectedValue={this.props.shift}
             onValueChange={console.log('value changed')}
