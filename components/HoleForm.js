@@ -1,21 +1,30 @@
 import React, { Component } from 'react';
 import { View, Text, Picker, Button } from 'react-native';
-import { CardSection } from './common';
+import { Card, CardSection } from './common';
 
 class HoleForm extends Component {
 
   render() {
     console.log('in render HoleForm. current hole:', this.props.currentHole);
+    console.log('in render HoleForm. holeDetails:', this.props.holeDetails);
+
+    const currentHole = this.props.currentHole;
+    const holeDetails = this.props.holeDetails;
+
     return (
-      <CardSection>
-          <Text>HOLE: {this.props.currentHole}</Text>
-          <Text>HOLE: {this.props.currentHole}</Text>
-          <Text>HOLE: {this.props.currentHole}</Text>
-          <Text>HOLE: {this.props.currentHole}</Text>
-          <Text>HOLE: {this.props.currentHole}</Text>
-          <Text>HOLE: {this.props.currentHole}</Text>
-          <Text>HOLE: {this.props.currentHole}</Text>
-      </CardSection>
+      <Card>
+        <CardSection>
+          <Text>HOLE: {currentHole}</Text>
+        </CardSection>
+
+        <CardSection>
+          <Text>TEE LENGTH: {holeDetails[currentHole].tee_1_len}</Text>
+        </CardSection>
+
+        <CardSection>
+          <Text>PAR: {holeDetails[currentHole].tee_1_par}</Text>
+        </CardSection>
+      </Card>
     );
   }
 }

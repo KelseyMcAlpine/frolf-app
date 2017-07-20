@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button } from 'react-native';
+import { Button, View } from 'react-native';
 import { connect } from 'react-redux';
 import { Card, CardSection } from './common';
 import HoleForm from './HoleForm';
@@ -11,6 +11,7 @@ class GamePlay extends Component {
     super()
     this.state = {
       currentHole: 1,
+      score: {}
     }
   }
 
@@ -62,12 +63,17 @@ class GamePlay extends Component {
   render() {
     console.log('in render game play. current hole:', this.state.currentHole);
     return (
-      <Card>
-        <HoleForm currentHole={this.state.currentHole} style={{ height: 50 }}/>
-        <CardSection>
-          {this.renderButton()}
-        </CardSection>
-      </Card>
+      <View>
+        <HoleForm
+          currentHole={this.state.currentHole}
+          holeDetails={this.props.holeDetails}
+        />
+        <Card>
+          <CardSection>
+            {this.renderButton()}
+          </CardSection>
+        </Card>
+      </View>
     );
   }
 }
