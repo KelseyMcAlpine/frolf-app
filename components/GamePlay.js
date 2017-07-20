@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { View, Button } from 'react-native';
+import { Button } from 'react-native';
 import { connect } from 'react-redux';
+import { Card, CardSection } from './common';
 import HoleForm from './HoleForm';
 import { saveScorecard } from '../actions';
 
@@ -61,10 +62,12 @@ class GamePlay extends Component {
   render() {
     console.log('in render game play. current hole:', this.state.currentHole);
     return (
-      <View>
+      <Card>
         <HoleForm currentHole={this.state.currentHole} style={{ height: 50 }}/>
-        {this.renderButton()}
-      </View>
+        <CardSection>
+          {this.renderButton()}
+        </CardSection>
+      </Card>
     );
   }
 }

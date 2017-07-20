@@ -7,7 +7,7 @@ class HoleForm extends Component {
   render() {
     console.log('in render HoleForm. current hole:', this.props.currentHole);
     return (
-      <View style={{flex: 1, justifyContent: 'center' }}>
+      <CardSection>
           <Text>HOLE: {this.props.currentHole}</Text>
           <Text>HOLE: {this.props.currentHole}</Text>
           <Text>HOLE: {this.props.currentHole}</Text>
@@ -15,7 +15,7 @@ class HoleForm extends Component {
           <Text>HOLE: {this.props.currentHole}</Text>
           <Text>HOLE: {this.props.currentHole}</Text>
           <Text>HOLE: {this.props.currentHole}</Text>
-      </View>
+      </CardSection>
     );
   }
 }
