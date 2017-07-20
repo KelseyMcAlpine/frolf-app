@@ -5,6 +5,14 @@ import HoleForm from './HoleForm';
 import { saveScorecard } from '../actions';
 
 class GamePlay extends Component {
+
+  constructor(){
+    super()
+    this.state = {
+      currentHole: 1,
+    }
+  }
+
   saveScorecard() {
     const date = new Date();
     const currentDate = (date.getMonth()+1) + '/'
@@ -24,11 +32,38 @@ class GamePlay extends Component {
     this.props.saveScorecard({ scorecardInfo });
   }
 
+  onPressNextHole() {
+    const { currentHole }  = this.state;
+    const numOfHoles = (this.props.holeDetails.length) - 1;
+    if ( currentHole < numOfHoles ) {
+      this.setState({
+        currentHole: this.state.currentHole + 1
+      })
+    }
+  }
+
+  renderButton() {
+    const { currentHole }  = this.state;
+    const numOfHoles = (this.props.holeDetails.length) - 1;
+
+    if ( currentHole < numOfHoles ) {
+      return (
+        <Button title="next holes" onPress={this.onPressNextHole.bind(this)} />
+      )
+    } else {
+      return (
+        <Button title="save scorecard" onPress={this.saveScorecard.bind(this)} />
+      )
+    }
+  }
+
+
   render() {
+    console.log('in render game play. current hole:', this.state.currentHole);
     return (
       <View>
-        <HoleForm currentHole={1} />
-        <Button title="save scorecard" onPress={this.saveScorecard.bind(this)} />
+        <HoleForm currentHole={this.state.currentHole} style={{ height: 50 }}/>
+        {this.renderButton()}
       </View>
     );
   }
