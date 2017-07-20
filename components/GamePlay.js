@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Button, View } from 'react-native';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
-import { Card, CardSection } from './common';
+import { Card, CardSection, Button } from './common';
 import HoleForm from './HoleForm';
 import { saveScorecard } from '../actions';
 
@@ -27,7 +27,7 @@ class GamePlay extends Component {
         holes: (this.props.holeDetails.length) - 1,
         currentDate
       },
-      playerNames: this.props.players,
+      players: this.props.players,
       // scores
     };
     console.log('scorecard info: ', scorecardInfo);
@@ -50,11 +50,11 @@ class GamePlay extends Component {
 
     if ( currentHole < numOfHoles ) {
       return (
-        <Button title="next holes" onPress={this.onPressNextHole.bind(this)} />
+        <Button onPress={this.onPressNextHole.bind(this)}>Next Hole</Button>
       )
     } else {
       return (
-        <Button title="save scorecard" onPress={this.saveScorecard.bind(this)} />
+        <Button onPress={this.saveScorecard.bind(this)}>Save Scorecard</Button>
       )
     }
   }
@@ -64,10 +64,14 @@ class GamePlay extends Component {
     console.log('in render game play. current hole:', this.state.currentHole);
     return (
       <View>
-        <HoleForm
-          currentHole={this.state.currentHole}
-          holeDetails={this.props.holeDetails}
-        />
+        <Card>
+          <HoleForm
+            currentHole={this.state.currentHole}
+            holeDetails={this.props.holeDetails}
+            players={this.props.players}
+          />
+        </Card>
+
         <Card>
           <CardSection>
             {this.renderButton()}
