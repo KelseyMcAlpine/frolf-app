@@ -13,7 +13,6 @@ const Input = ({ label, value, onChangeText, placeholder, secureTextEntry }) => 
         onChangeText={onChangeText}
         autoCorrect={false}
         placeholder={placeholder}
-
       />
     </View>
   );
