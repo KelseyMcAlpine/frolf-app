@@ -3,7 +3,7 @@ import { Text, Image, View, TouchableWithoutFeedback } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { courseDetailsFetch } from '../actions';
-import { Card, CardSection, ImageSection } from './common';
+import { Card, CardSection, ImageSection, Rating } from './common';
 
 class CourseListItem extends Component {
 
@@ -27,7 +27,7 @@ class CourseListItem extends Component {
                 <Text>{name}</Text>
                 <View>
                   <Text>Distance</Text>
-                  <Text>Rating: {rating}</Text>
+                  <Rating rating={rating} />
                 </View>
               </View>
             </CardSection>

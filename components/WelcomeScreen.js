@@ -29,7 +29,7 @@ class WelcomeScreen extends Component {
 
   // programatic navigation
   onSlidesComplete = () => {
-    Actions.login();
+    Actions.facebookLogin();
   }
 
   // instead of this.onSlidesComplete.bind(this) can also use an arrow function

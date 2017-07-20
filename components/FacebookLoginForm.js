@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { View, Dimensions, Text } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-import * as actions from '../actions';
+import { facebookLogin } from '../actions';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 // using expo for facebook auth
@@ -23,23 +24,22 @@ class AuthScreen extends Component {
   }
 
   onAuthComplete(props) {
+    console.log('in on auth complete. props.token value:', props.token);
     if (props.token) {
-      this.props.navigation.navigate('map');
+      Actions.courseList();
     }
   }
 
   render() {
     return (
-      <View style={styles.viewStyle}>
-        <Text>FB Auth Page</Text>
-      </View>
+      <View style={styles.viewStyle} />
     );
   }
 }
 
-function mapStateToProps({ auth }) {
+function mapStateToProps({ facebook }) {
   return {
-    token: auth.token
+    token: facebook.token
   };
 }
 
@@ -52,4 +52,4 @@ const styles = {
   },
 };
 
-export default connect(mapStateToProps, actions)(AuthScreen);
+export default connect(mapStateToProps, { facebookLogin })(AuthScreen);

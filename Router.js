@@ -1,6 +1,6 @@
 import React from 'react';
 import { Scene, Router } from 'react-native-router-flux';
-import LoginForm from './components/LoginForm';
+import FacebookLoginForm from './components/FacebookLoginForm';
 import CourseList from './components/CourseList';
 import CourseDetails from './components/CourseDetails';
 import ScorecardForm from './components/ScorecardForm';
@@ -18,9 +18,9 @@ const RouterComponent = () => {
           title="Welcome"
         />
         <Scene
-          key="login"
-          component={LoginForm}
-          title="Login"
+          key="facebookLogin"
+          component={FacebookLoginForm}
+          title="Facebook Login"
         />
         <Scene
           key="courseDetails"

@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { saveScorecard, savePlayers } from '../actions';
-import { Card, CardSection, Input, Button, Spinner } from './common';
+import { Card, CardSection, Input, Button } from './common';
 
 class ScorecardForm extends Component {
   constructor(props) {
     super(props);
 
+    const user = props.user_info.name
+
     this.state = {
-      player1: '',
+      player1: user,
       player2: '',
       player3: '',
       player4: ''
@@ -32,15 +34,16 @@ class ScorecardForm extends Component {
   render() {
     if (!this.props.holeDetails) {
       return (
-          <Spinner />
+          <ActivityIndicator size='large' />
       );
     }
 
     const { holeDetails } = this.props;
-    const name = holeDetails[0].name;
-    const holes = (holeDetails.length) - 1;
+    const courseName = holeDetails[0].name;
+    const courseHoles = `${(holeDetails.length) - 1} Holes`;
 
-    console.log('hole details: ', holeDetails);
+    const { user_image_url, name } = this.props.user_info
+
     return (
       <Card>
         <CardSection>
@@ -50,9 +53,9 @@ class ScorecardForm extends Component {
         <CardSection>
           <Input
             label="Player 1"
-            placeholder="Ada Lovelace"
-            value={this.state.player1}
-            onChangeText={player1 => this.setState({ player1 })}
+            placeholder={name}
+            value={name}
+            editable='false'
           />
         </CardSection>
 
@@ -86,8 +89,8 @@ class ScorecardForm extends Component {
         <CardSection>
           <View>
             <Text>Course Details</Text>
-            <Text>{name}</Text>
-            <Text>{holes} Holes</Text>
+            <Text>{courseName}</Text>
+            <Text>{courseHoles}</Text>
           </View>
         </CardSection>
 
@@ -103,7 +106,8 @@ class ScorecardForm extends Component {
 
 const mapStateToProps = (state) => {
   const { holeDetails } = state.scorecardForm;
-  return { holeDetails };
+  const { user_info } = state.facebook;
+  return { holeDetails, user_info };
 };
 
 export default connect(mapStateToProps, { saveScorecard, savePlayers })(ScorecardForm);
