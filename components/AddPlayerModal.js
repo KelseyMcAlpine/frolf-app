@@ -27,8 +27,8 @@ const AddPlayerModal = ({ children, visible, onAccept, onDecline, onChangeText }
           </CardSection>
 
           <CardSection>
-            <Button onPress={onAccept}>Yes</Button>
-            <Button onPress={onDecline}>No</Button>
+            <Button onPress={onDecline}>Cancel</Button>
+            <Button onPress={onAccept}>Save</Button>
           </CardSection>
       </View>
     </Modal>
