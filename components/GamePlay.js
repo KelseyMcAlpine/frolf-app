@@ -7,12 +7,10 @@ import { saveScorecard } from '../actions';
 
 class GamePlay extends Component {
 
-  constructor(){
-    super()
+  constructor(props){
     this.state = {
-      currentHole: 1,
-      score: {}
-    }
+      currentHole: 1
+    };
   }
 
   saveScorecard() {
@@ -28,7 +26,7 @@ class GamePlay extends Component {
         currentDate
       },
       players: this.props.players,
-      // scores
+      scores: {}
     };
     console.log('scorecard info: ', scorecardInfo);
     this.props.saveScorecard({ scorecardInfo });
