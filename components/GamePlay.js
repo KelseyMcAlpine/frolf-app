@@ -5,6 +5,11 @@ import { Card, CardSection, Button } from './common';
 import HoleForm from './HoleForm';
 import { saveScorecard, saveScores } from '../actions';
 
+// TODO:
+// - Clear state if game is canceled/left
+// - Fix bug with saving hole #18
+// - Navigate away from page after saving
+
 class GamePlay extends Component {
 
   constructor(props){
@@ -13,18 +18,43 @@ class GamePlay extends Component {
       currentHole: 1,
     };
 
-    // this.props.holeDetails[this.state.currentHole].tee_1_par,
+    const scoresState = this.props.players.map((player, index) => {
+      const { holeDetails } = this.props;
+      const { currentHole } = this.state;
+      const defaultScore = parseInt(holeDetails[currentHole].tee_1_par);
+
+      return defaultScore;
+    });
+
     this.state = {
       currentHole: this.state.currentHole,
-      scores: [ 4, 7, 9, 100 ]
+      scores: scoresState
     };
+    console.log('this.state', this.state);
+  }
+
+  onIncrement(player, index) {
+    console.log('in on increment');
+    console.log('this index: ', index);
+    // console.log('this player: ', this.player);
+
+    const scores = this.state.scores;
+
+    // console.log('scores: ', scores);
+    // console.log('index: ', index);
+    scores[index] += 1;
+    this.setState({ ...this.state, scores });
+  }
+
+  onDecrement(player, index) {
+    console.log('in on decrement');
+    // console.log('this index: ', this.index);
+    // console.log('this player: ', this.player);
   }
 
   saveScorecard() {
     const { currentHole, scores }  = this.state;
     this.props.saveScores({ currentHole, scores });
-
-    // todo -- bug with saving hole #18
 
     const date = new Date();
     const currentDate = (date.getMonth()+1) + '/'
@@ -40,12 +70,11 @@ class GamePlay extends Component {
       players: this.props.players,
       scores: this.props.gameScores
     };
-    console.log('Save scorecard. scorecard info: ', scorecardInfo);
     this.props.saveScorecard({ scorecardInfo });
-    // navigate away from page after saving
   }
 
   onPressNextHole() {
+    console.log('state: ', this.state);
     const { currentHole, scores }  = this.state;
     const numOfHoles = (this.props.holeDetails.length) - 1;
 
@@ -83,6 +112,8 @@ class GamePlay extends Component {
           holeDetails={this.props.holeDetails}
           players={this.props.players}
           scores={this.state.scores}
+          onIncrementScore={this.onIncrement.bind(this) }
+          onDecrementScore={this.onDecrement.bind(this) }
         />
         <CardSection>
           {this.renderButton()}

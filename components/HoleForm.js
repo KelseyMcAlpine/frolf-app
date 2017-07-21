@@ -7,12 +7,14 @@ class HoleForm extends Component {
   renderPlayerInputs() {
     return this.props.players.map((player, index) => {
       return (
-        <View>
-          <CardSection key={index}>
+        <View key={index}>
+          <CardSection>
             <Text>{player}</Text>
           </CardSection>
           <CardSection>
+            <Button onPress={() => this.props.onIncrementScore(player, index)}>+</Button>
             <Text>Score: {this.props.scores[index]}</Text>
+            <Button onPress={() => this.props.onDecrementScore(player, index)}>-</Button>
           </CardSection>
         </View>
       );
