@@ -42,9 +42,6 @@ class ScorecardForm extends Component {
     this.setState({ addPlayerForm: null, showModal: false });
   }
 
-  onChangeText() {
-  }
-
   renderPlayers() {
     return this.state.players.map((player, index) => {
       return (
