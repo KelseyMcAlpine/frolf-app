@@ -21,6 +21,11 @@ class GamePlay extends Component {
   }
 
   saveScorecard() {
+    const { currentHole, scores }  = this.state;
+    this.props.saveScores({ currentHole, scores });
+
+    // todo -- bug with saving hole #18
+
     const date = new Date();
     const currentDate = (date.getMonth()+1) + '/'
                     + date.getDate() + '/'
@@ -33,10 +38,11 @@ class GamePlay extends Component {
         currentDate
       },
       players: this.props.players,
-      scores: {}
+      scores: this.props.gameScores
     };
     console.log('Save scorecard. scorecard info: ', scorecardInfo);
     this.props.saveScorecard({ scorecardInfo });
+    // navigate away from page after saving
   }
 
   onPressNextHole() {
