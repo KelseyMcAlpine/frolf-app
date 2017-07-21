@@ -15,7 +15,7 @@ class ScorecardForm extends Component {
     this.state = {
       showModal: false,
       playerCount: 1,
-      players: [user, 'ada'],
+      players: [user],
       addPlayerForm: null
     };
   }
