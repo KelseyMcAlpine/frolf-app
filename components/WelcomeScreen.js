@@ -34,7 +34,6 @@ class WelcomeScreen extends Component {
 
   // instead of this.onSlidesComplete.bind(this) can also use an arrow function
   render() {
-    console.log('render in welcome screen');
     if (_.isNull(this.state.token)) {
       return <Text>App loading</Text>
     }
