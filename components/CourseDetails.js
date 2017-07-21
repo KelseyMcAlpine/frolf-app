@@ -8,20 +8,21 @@ import { MapView } from 'expo';
 class CourseDetails extends Component {
   // starting and zoom level for mapview
   // lon and lat are center
-  constructor({courseDetails}){
-    super({courseDetails});
+  constructor(props) {
+    super(props);
+    const { courseDetails } = this.props;
     this.state = {
       mapLoaded: false,
       region: {
-        longitude: courseDetails.longitude,
-        latitude: courseDetails.latitude,
+        longitude: parseInt(courseDetails.longitude),
+        latitude: parseInt(courseDetails.latitude),
         longitudeDelta: 0.04,
         latitudeDelta: 0.09
       },
       marker: {
         coordinate: {
-          longitude: courseDetails.longitude,
-          latitude: courseDetails.latitude,
+          longitude: parseInt(courseDetails.longitude),
+          latitude: parseInt(courseDetails.latitude),
         },
         title: courseDetails.name,
       }
