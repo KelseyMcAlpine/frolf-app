@@ -43,7 +43,6 @@ class ScorecardForm extends Component {
   }
 
   onChangeText() {
-    console.log('in on change text');
   }
 
   renderPlayers() {
