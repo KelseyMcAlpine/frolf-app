@@ -34,7 +34,6 @@ const doFacebookLogin = async (dispatch) => {
 };
 
 authenticate = (token) => {
-  console.log('in authenticate');
   const provider = firebase.auth.FacebookAuthProvider
   const credential = provider.credential(token)
   return firebase.auth().signInWithCredential(credential)
