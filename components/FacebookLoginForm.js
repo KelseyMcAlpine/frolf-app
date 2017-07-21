@@ -24,7 +24,6 @@ class AuthScreen extends Component {
   }
 
   onAuthComplete(props) {
-    console.log('in on auth complete. props.token value:', props.token);
     if (props.token) {
       Actions.courseList();
     }
