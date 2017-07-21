@@ -21,7 +21,6 @@ const AddPlayerModal = ({ children, visible, onAccept, onDecline, onChangeText }
             <Input
               label="Name"
               placeholder="Ada Lovelace"
-              value={1}
               onChangeText={onChangeText}
             />
           </CardSection>
