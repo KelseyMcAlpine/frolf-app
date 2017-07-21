@@ -8,18 +8,9 @@ class HoleForm extends Component {
       console.log('in hole form. player: ', player);
       console.log('in hole form. index: ', index);
       return (
-        <View style={{ flexDirection: 'row', flex: 1 }} key={index}>
-          <Text>{player}</Text>
-          <Picker
-            selectedValue={this.props.shift}
-            onValueChange={console.log('value changed')}
-            style={{ flex: 1 }}
-          >
-            <Picker.Item label="1" value="1" />
-            <Picker.Item label="2" value="2" />
-            <Picker.Item label="3" value="3" />
-          </Picker>
-        </View>
+          <CardSection key={index} style={{ flexDirection: 'row', flex: 1 }}>
+            <Text>{player}</Text>
+          </CardSection>
       );
     });
   }
@@ -42,9 +33,7 @@ class HoleForm extends Component {
           <Text>PAR: {holeDetails[currentHole].tee_1_par}</Text>
         </CardSection>
 
-        <CardSection>
-          {this.renderPlayerInputs()}
-        </CardSection>
+        {this.renderPlayerInputs()}
       </Card>
     );
   }
