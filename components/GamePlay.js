@@ -30,26 +30,18 @@ class GamePlay extends Component {
       currentHole: this.state.currentHole,
       scores: scoresState
     };
-    console.log('this.state', this.state);
   }
 
   onIncrement(player, index) {
-    console.log('in on increment');
-    console.log('this index: ', index);
-    // console.log('this player: ', this.player);
-
     const scores = this.state.scores;
-
-    // console.log('scores: ', scores);
-    // console.log('index: ', index);
     scores[index] += 1;
     this.setState({ ...this.state, scores });
   }
 
   onDecrement(player, index) {
-    console.log('in on decrement');
-    // console.log('this index: ', this.index);
-    // console.log('this player: ', this.player);
+    const scores = this.state.scores;
+    scores[index] -= 1;
+    this.setState({ ...this.state, scores });
   }
 
   saveScorecard() {
@@ -74,7 +66,6 @@ class GamePlay extends Component {
   }
 
   onPressNextHole() {
-    console.log('state: ', this.state);
     const { currentHole, scores }  = this.state;
     const numOfHoles = (this.props.holeDetails.length) - 1;
 
@@ -104,7 +95,6 @@ class GamePlay extends Component {
 
 
   render() {
-    console.log('game play render. scores: ', this.props.gameScores);
     return (
       <View>
         <HoleForm
