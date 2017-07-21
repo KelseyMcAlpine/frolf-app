@@ -3,14 +3,20 @@ import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { Card, CardSection, Button } from './common';
 import HoleForm from './HoleForm';
-import { saveScorecard } from '../actions';
+import { saveScorecard, saveScores } from '../actions';
 
 class GamePlay extends Component {
 
   constructor(props){
-    super();
+    super(props);
     this.state = {
-      currentHole: 1
+      currentHole: 1,
+    };
+
+    // this.props.holeDetails[this.state.currentHole].tee_1_par,
+    this.state = {
+      currentHole: this.state.currentHole,
+      scores: [ 4, 7, 9, 100 ]
     };
   }
 
@@ -29,13 +35,16 @@ class GamePlay extends Component {
       players: this.props.players,
       scores: {}
     };
-    console.log('scorecard info: ', scorecardInfo);
+    console.log('Save scorecard. scorecard info: ', scorecardInfo);
     this.props.saveScorecard({ scorecardInfo });
   }
 
   onPressNextHole() {
-    const { currentHole }  = this.state;
+    const { currentHole, scores }  = this.state;
     const numOfHoles = (this.props.holeDetails.length) - 1;
+
+    this.props.saveScores({ currentHole, scores });
+
     if ( currentHole < numOfHoles ) {
       this.setState({
         currentHole: this.state.currentHole + 1
@@ -60,13 +69,14 @@ class GamePlay extends Component {
 
 
   render() {
-    console.log('in render game play. current hole:', this.state.currentHole);
+    console.log('game play render. scores: ', this.props.gameScores);
     return (
       <View>
         <HoleForm
           currentHole={this.state.currentHole}
           holeDetails={this.props.holeDetails}
           players={this.props.players}
+          scores={this.state.scores}
         />
         <CardSection>
           {this.renderButton()}
@@ -78,7 +88,8 @@ class GamePlay extends Component {
 
 const mapStateToProps = state => {
   const { holeDetails, players } = state.scorecardForm;
-  return { holeDetails, players };
+  const { gameScores } = state;
+  return { holeDetails, players, gameScores };
 };
 
-export default connect(mapStateToProps, { saveScorecard })(GamePlay);
+export default connect(mapStateToProps, { saveScores, saveScorecard })(GamePlay);

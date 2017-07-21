@@ -1,28 +1,20 @@
 import React, { Component } from 'react';
 import { View, Text, Picker } from 'react-native';
-import { Card, CardSection, Input } from './common';
+import { Card, CardSection, Input, Button } from './common';
 
 class HoleForm extends Component {
-  constructor(props){
-    super(props)
-
-    this.state = {
-      score: [
-        this.props.holeDetails[this.props.currentHole].tee_1_par,
-        this.props.holeDetails[this.props.currentHole].tee_1_par,
-        this.props.holeDetails[this.props.currentHole].tee_1_par,
-        this.props.holeDetails[this.props.currentHole].tee_1_par
-      ]
-    };
-  }
 
   renderPlayerInputs() {
     return this.props.players.map((player, index) => {
       return (
+        <View>
           <CardSection key={index}>
             <Text>{player}</Text>
-            <Text>Score: {this.state.score[index]}</Text>
           </CardSection>
+          <CardSection>
+            <Text>Score: {this.props.scores[index]}</Text>
+          </CardSection>
+        </View>
       );
     });
   }

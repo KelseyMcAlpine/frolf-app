@@ -13,6 +13,8 @@ class CourseList extends Component {
     const userLat = 43.0001;
     const userLon = -77.6109;
 
+    // could reverse the order of these two.
+    // get user info first then have course list fetch as callback
     this.props.courseListFetch(() => { console.log('course list fetch callback'); });
     this.props.getUserInfo(this.props.token);
   }
