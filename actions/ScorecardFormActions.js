@@ -9,7 +9,6 @@ import {
 } from './types';
 
 export const savePlayers = ({ players }) => {
-  console.log('in save players. players: ', players);
   return {
     type: SAVE_PLAYERS_SUCCESS,
     payload: players
