@@ -29,18 +29,14 @@ class CourseDetails extends Component {
   }
 
   componentDidMount() {
-    console.log('component did mount. course details: ', this.props.courseDetails);
     this.setState({ mapLoaded: true });
   }
 
   onRegionChangeComplete = (region) => {
-    // console.log(region);
     this.setState({ region });
   }
 
   onPressStart() {
-    console.log('1. pressed start button to create scorecard');
-    console.log('passing courseId: ', this.props.courseId);
     this.props.createScorecardForm({ courseId: this.props.courseId });
   }
 
@@ -58,7 +54,6 @@ class CourseDetails extends Component {
   }
 
   render() {
-    console.log('in render. maploaded?', this.state.mapLoaded);
     if (!this.state.mapLoaded) {
       return (
         <View style={{ flex: 1, justifyContent: 'center' }}>
