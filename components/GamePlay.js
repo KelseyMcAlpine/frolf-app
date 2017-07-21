@@ -71,9 +71,18 @@ class GamePlay extends Component {
 
     this.props.saveScores({ currentHole, scores });
 
+    const scoresState = this.props.players.map((player, index) => {
+      const { holeDetails } = this.props;
+      const { currentHole } = this.state;
+      const defaultScore = parseInt(holeDetails[currentHole].tee_1_par);
+
+      return defaultScore;
+    });
+
     if ( currentHole < numOfHoles ) {
       this.setState({
-        currentHole: this.state.currentHole + 1
+        currentHole: this.state.currentHole + 1,
+        scores: scoresState
       })
     }
   }
