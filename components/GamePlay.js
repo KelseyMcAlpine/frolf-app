@@ -8,6 +8,7 @@ import { saveScorecard } from '../actions';
 class GamePlay extends Component {
 
   constructor(props){
+    super();
     this.state = {
       currentHole: 1
     };
@@ -62,19 +63,14 @@ class GamePlay extends Component {
     console.log('in render game play. current hole:', this.state.currentHole);
     return (
       <View>
-        <Card>
-          <HoleForm
-            currentHole={this.state.currentHole}
-            holeDetails={this.props.holeDetails}
-            players={this.props.players}
-          />
-        </Card>
-
-        <Card>
-          <CardSection>
-            {this.renderButton()}
-          </CardSection>
-        </Card>
+        <HoleForm
+          currentHole={this.state.currentHole}
+          holeDetails={this.props.holeDetails}
+          players={this.props.players}
+        />
+        <CardSection>
+          {this.renderButton()}
+        </CardSection>
       </View>
     );
   }
