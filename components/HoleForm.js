@@ -3,13 +3,25 @@ import { View, Text, Picker } from 'react-native';
 import { Card, CardSection, Input } from './common';
 
 class HoleForm extends Component {
+  constructor(props){
+    super(props)
+
+    this.state = {
+      score: [
+        this.props.holeDetails[this.props.currentHole].tee_1_par,
+        this.props.holeDetails[this.props.currentHole].tee_1_par,
+        this.props.holeDetails[this.props.currentHole].tee_1_par,
+        this.props.holeDetails[this.props.currentHole].tee_1_par
+      ]
+    };
+  }
+
   renderPlayerInputs() {
     return this.props.players.map((player, index) => {
-      console.log('in hole form. player: ', player);
-      console.log('in hole form. index: ', index);
       return (
-          <CardSection key={index} style={{ flexDirection: 'row', flex: 1 }}>
+          <CardSection key={index}>
             <Text>{player}</Text>
+            <Text>Score: {this.state.score[index]}</Text>
           </CardSection>
       );
     });
@@ -20,21 +32,21 @@ class HoleForm extends Component {
     const holeDetails = this.props.holeDetails;
 
     return (
-      <Card>
-        <CardSection>
-          <Text>HOLE: {currentHole}</Text>
-        </CardSection>
+        <Card>
+          <CardSection>
+            <Text>HOLE: {currentHole}</Text>
+          </CardSection>
 
-        <CardSection>
-          <Text>TEE LENGTH: {holeDetails[currentHole].tee_1_len}</Text>
-        </CardSection>
+          <CardSection>
+            <Text>TEE LENGTH: {holeDetails[currentHole].tee_1_len}</Text>
+          </CardSection>
 
-        <CardSection>
-          <Text>PAR: {holeDetails[currentHole].tee_1_par}</Text>
-        </CardSection>
+          <CardSection>
+            <Text>PAR: {holeDetails[currentHole].tee_1_par}</Text>
+          </CardSection>
 
-        {this.renderPlayerInputs()}
-      </Card>
+          {this.renderPlayerInputs()}
+        </Card>
     );
   }
 }
