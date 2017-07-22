@@ -1,11 +1,11 @@
 import React from 'react';
 import { Scene, Router } from 'react-native-router-flux';
-import FacebookLoginForm from './components/FacebookLoginForm';
-import CourseList from './components/CourseList';
-import CourseDetails from './components/CourseDetails';
-import ScorecardForm from './components/ScorecardForm';
-import GamePlay from './components/GamePlay';
-import WelcomeScreen from './components/WelcomeScreen';
+import FacebookLoginForm from './screens/FacebookLoginForm';
+import CourseList from './screens/CourseList';
+import CourseDetails from './screens/CourseDetails';
+import ScorecardForm from './screens/ScorecardForm';
+import GamePlay from './screens/GamePlay';
+import WelcomeScreen from './screens/WelcomeScreen';
 
 const RouterComponent = () => {
   return (
