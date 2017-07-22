@@ -11,7 +11,6 @@ export default function (state = {}, action) {
     case FACEBOOK_LOGIN_FAIL:
       return { token: null };
     case USER_INFO_FETCH_SUCCESS:
-      console.log('in user info fetch success');
       return { ...state, user_info: action.payload };
     default:
       return state;

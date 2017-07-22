@@ -8,8 +8,6 @@ import {
   USER_INFO_FETCH_SUCCESS
 } from './types';
 
-
-
 export const facebookLogin = () => async dispatch => {
   const token = await AsyncStorage.getItem('fb_token');
   if (token) {

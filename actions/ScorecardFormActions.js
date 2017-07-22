@@ -17,8 +17,6 @@ export const savePlayers = ({ players }) => {
 
 export const createScorecardForm = ({ courseId }) => {
   return (dispatch) => {
-    console.log('in create Scorecard form');
-    console.log('courseId: ', courseId);
     axios.get('https://api.myjson.com/bins/pqvsb')
     // axios.get('https://www.dgcoursereview.com/api_test/index.php', {
     //     params: {
@@ -29,7 +27,6 @@ export const createScorecardForm = ({ courseId }) => {
     //     }
     //   })
       .then((response) => {
-        console.log('Get hole details response.data: ', response.data);
         dispatch({
           type: CREATE_SCORECARD_FORM_SUCCESS,
           payload: response.data
@@ -46,13 +43,10 @@ export const saveScorecard = ({ scorecardInfo }) => {
   const { currentUser } = firebase.auth();
 
   return (dispatch) => {
-    console.log('current user: ', currentUser);
-    console.log('scorecard info: ', scorecardInfo);
     // also need to send the scorecard info as props
 
     firebase.database().ref(`/users/${currentUser.uid}/scorecards`).push(scorecardInfo)
       .then((response) => {
-        console.log('firebase resonse:', response);
         dispatch({
           type: SCORECARD_SAVE_SUCCESS,
           payload: response.key

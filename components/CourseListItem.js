@@ -13,7 +13,6 @@ class CourseListItem extends Component {
 
   render() {
     const { name, rating, image, distance } = this.props.course;
-    console.log('course:',this.props.course)
     return (
       <TouchableWithoutFeedback onPress={this.onRowPress}>
         <View>

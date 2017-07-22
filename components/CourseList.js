@@ -23,8 +23,6 @@ class CourseList extends Component {
   }
 
   renderCourses() {
-    console.log('courses: ', this.props.courses);
-    console.log('finished loading courses');
     return this.props.courses.map(course => {
       return (
         <CourseListItem key={ course.course_id } course={ course } />

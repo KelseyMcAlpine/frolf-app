@@ -17,7 +17,6 @@ export const courseListFetch = () => async (dispatch) => {
     let { data } = await axios.get('https://api.myjson.com/bins/12qesz');
     let allInfo = await Promise.all(
       data.map(async (course) => {
-        console.log('mapping response')
         // let dgc_image = await axios.get('https://www.dgcoursereview.com/api_test/index.php', {
         //   params: {
         //     key: DG_API_KEY,
@@ -49,7 +48,6 @@ export const courseListFetch = () => async (dispatch) => {
         }
       })
     )
-    console.log('allinfo:', allInfo);
     dispatch({ type: COURSE_LIST_FETCH_SUCCESS, payload: allInfo });
   } catch(e) {
     console.error(e);
