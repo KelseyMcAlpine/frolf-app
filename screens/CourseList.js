@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ScrollView, Text, ActivityIndicator } from 'react-native';
 import { courseListFetch, getUserInfo, courseImagesFetch } from '../actions';
-import CourseListItem from './CourseListItem';
+import CourseListItem from '../components/CourseListItem';
 
 class CourseList extends Component {
 
@@ -14,7 +14,7 @@ class CourseList extends Component {
     const userLon = -77.6109;
 
     this.props.getUserInfo(this.props.token, () => {
-      this.props.courseListFetch();
+      this.props.courseListFetch(userLat, userLon);
     });
   }
 
@@ -25,11 +25,10 @@ class CourseList extends Component {
   renderCourses() {
     return this.props.courses.map(course => {
       return (
-        <CourseListItem key={ course.course_id } course={ course } />
+        <CourseListItem key={course.key} course={course} />
       );
     });
   }
-
 
   render() {
     if (this.state.coursesLoading){

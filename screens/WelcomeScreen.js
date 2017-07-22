@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { AsyncStorage, Text } from 'react-native';
-import Slides from './Slides';
+import Slides from '../components/Slides';
 
 const SLIDE_DATA = [
   { text: 'Welcome to Job App', color: '#03A954' },

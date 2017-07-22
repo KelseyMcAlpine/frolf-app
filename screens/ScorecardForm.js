@@ -3,8 +3,8 @@ import { Text, View, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { saveScorecard, savePlayers } from '../actions';
-import { Card, CardSection, Input, Button } from './common';
-import { AddPlayerModal } from './AddPlayerModal';
+import { Card, CardSection, Input, Button } from '../components/common';
+import { AddPlayerModal } from '../components/AddPlayerModal';
 
 class ScorecardForm extends Component {
   constructor(props) {

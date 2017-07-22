@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
-import { Card, CardSection, Button } from './common';
-import HoleForm from './HoleForm';
+import { Card, CardSection, Button } from '../components/common';
+import HoleForm from '../components/HoleForm';
 import { saveScorecard, saveScores } from '../actions';
 
 // TODO:
