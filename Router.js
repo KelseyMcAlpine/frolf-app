@@ -15,14 +15,13 @@ const RouterComponent = () => {
           initial
           key="welcome"
           component={WelcomeScreen}
-          hideNavBar
         />
         <Scene
           key="facebookLogin"
           component={FacebookLoginForm}
-          hideNavBar
         />
       </Scene>
+
       <Scene key="main">
         <Scene
           key="courseList"
