@@ -12,8 +12,8 @@ class CourseListItem extends Component {
   }
 
   render() {
-    const { name, rating } = this.props.course;
-
+    const { name, rating, image, distance } = this.props.course;
+    console.log('course:',this.props.course)
     return (
       <TouchableWithoutFeedback onPress={this.onRowPress}>
         <View>
@@ -26,7 +26,7 @@ class CourseListItem extends Component {
               <View>
                 <Text>{name}</Text>
                 <View>
-                  <Text>Distance</Text>
+                  <Text>Distance {distance}</Text>
                   <Rating rating={rating} />
                 </View>
               </View>

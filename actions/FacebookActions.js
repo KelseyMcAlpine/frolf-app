@@ -39,7 +39,7 @@ authenticate = (token) => {
   return firebase.auth().signInWithCredential(credential)
 }
 
-export const getUserInfo = (token) => async (dispatch) => {
+export const getUserInfo = (token, callback) => async (dispatch) => {
   try {
     let { data } = await axios.get(`https://graph.facebook.com/v2.10/me?fields=id,name,picture,friends&access_token=${token}`);
     const user_info = {
@@ -48,6 +48,7 @@ export const getUserInfo = (token) => async (dispatch) => {
       friends: data.friends.data
     };
     dispatch({ type: USER_INFO_FETCH_SUCCESS, payload: user_info });
+    callback();
   } catch(error) {
     console.error(error);
   }

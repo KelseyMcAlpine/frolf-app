@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ScrollView, Text, ActivityIndicator } from 'react-native';
-import { courseListFetch, getUserInfo } from '../actions';
+import { courseListFetch, getUserInfo, courseImagesFetch } from '../actions';
 import CourseListItem from './CourseListItem';
 
 class CourseList extends Component {
@@ -13,10 +13,9 @@ class CourseList extends Component {
     const userLat = 43.0001;
     const userLon = -77.6109;
 
-    // could reverse the order of these two.
-    // get user info first then have course list fetch as callback
-    this.props.courseListFetch(() => { console.log('course list fetch callback'); });
-    this.props.getUserInfo(this.props.token);
+    this.props.getUserInfo(this.props.token, () => {
+      this.props.courseListFetch();
+    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -24,6 +23,8 @@ class CourseList extends Component {
   }
 
   renderCourses() {
+    console.log('courses: ', this.props.courses);
+    console.log('finished loading courses');
     return this.props.courses.map(course => {
       return (
         <CourseListItem key={ course.course_id } course={ course } />
@@ -33,8 +34,8 @@ class CourseList extends Component {
 
 
   render() {
-    if (this.coursesLoading){
-      return <ActivityIndicator size='large' />
+    if (this.state.coursesLoading){
+      return <Text>Loading</Text>
     }
 
     return (
@@ -51,4 +52,4 @@ const mapStateToProps = state => {
   return { courses, token };
 };
 
-export default connect(mapStateToProps, { courseListFetch, getUserInfo })(CourseList);
+export default connect(mapStateToProps, { courseListFetch, getUserInfo, courseImagesFetch })(CourseList);
