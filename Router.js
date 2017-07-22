@@ -15,7 +15,7 @@ const RouterComponent = () => {
           initial
           key="welcome"
           component={WelcomeScreen}
-          title="Welcome"
+          hideNavBar
         />
         <Scene
           key="facebookLogin"
