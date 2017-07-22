@@ -20,7 +20,7 @@ const RouterComponent = () => {
         <Scene
           key="facebookLogin"
           component={FacebookLoginForm}
-          title="Facebook Login"
+          hideNavBar
         />
         <Scene
           key="courseDetails"
