@@ -11,7 +11,6 @@ const SLIDE_DATA = [
 ];
 
 class WelcomeScreen extends Component {
-  // component level state
   state = { token: null }
 
   async componentWillMount() {
@@ -20,24 +19,17 @@ class WelcomeScreen extends Component {
     const token = await AsyncStorage.getItem('fb_token');
 
     if (token) {
-      this.props.navigation.navigate('map');
       this.setState({ token });
     } else {
       this.setState({ token: false });
     }
   }
 
-  // programatic navigation
   onSlidesComplete = () => {
     Actions.facebookLogin();
   }
 
-  // instead of this.onSlidesComplete.bind(this) can also use an arrow function
   render() {
-    if (_.isNull(this.state.token)) {
-      return <Text>App loading</Text>
-    }
-
     return (
       <Slides data={SLIDE_DATA} onComplete={this.onSlidesComplete} />
     );
