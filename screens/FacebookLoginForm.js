@@ -25,7 +25,7 @@ class AuthScreen extends Component {
 
   onAuthComplete(props) {
     if (props.token) {
-      Actions.courseList();
+      Actions.main({ type: 'reset' });
     }
   }
 
