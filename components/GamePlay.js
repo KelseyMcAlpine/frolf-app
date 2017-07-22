@@ -35,8 +35,8 @@ class GamePlay extends Component {
   componentWillReceiveProps(nextProps) {
     console.log('componentWillReceiveProps. Next props:', nextProps)
     // console.log('size:', nextProps.gameScores.hole_18);
-    if (nextProps.gameScores.hole_18) {
-      console.log('EIGHTEEN!');
+    const lastHole = `hole_${this.props.holeDetails.length - 1}`;
+    if (nextProps.gameScores.hasOwnProperty(lastHole)) {
       this.saveScorecard(nextProps);
     }
   }
