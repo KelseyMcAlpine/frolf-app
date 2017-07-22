@@ -12,7 +12,7 @@ import {
   COURSE_DETAILS_FETCH_SUCCESS
 } from './types';
 
-export const courseListFetch = () => async (dispatch) => {
+export const courseListFetch = (userLat, userLon) => async (dispatch) => {
   try {
     let { data } = await axios.get('https://api.myjson.com/bins/12qesz');
     let allInfo = await Promise.all(
@@ -27,11 +27,14 @@ export const courseListFetch = () => async (dispatch) => {
         // });
 
         let dgc_image = await axios.get('https://api.myjson.com/bins/a546b');
+
         const courseLatLon = `${course.latitude},${course.longitude}`;
+        const userLatLon = `${userLat},${userLon}`;
+
         let google_distance = await axios.get('https://maps.googleapis.com/maps/api/distancematrix/json', {
           params: {
             units: 'imperial',
-            origins: '43.161030,-77.610924',
+            origins: userLatLon,
             destinations: courseLatLon,
             key: GOOGLEMAPS_KEY
           }
@@ -39,6 +42,7 @@ export const courseListFetch = () => async (dispatch) => {
 
         return {
           id: course.course_id,
+          key: course.course_id,
           name: course.name,
           latitude: course.latitude,
           longitude: course.longitude,
@@ -48,6 +52,7 @@ export const courseListFetch = () => async (dispatch) => {
         }
       })
     )
+
     dispatch({ type: COURSE_LIST_FETCH_SUCCESS, payload: allInfo });
   } catch(e) {
     console.error(e);
