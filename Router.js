@@ -10,7 +10,7 @@ import WelcomeScreen from './screens/WelcomeScreen';
 const RouterComponent = () => {
   return (
     <Router sceneStyle={{ paddingTop: 60 }}>
-      <Scene key="main">
+      <Scene key="auth">
         <Scene
           initial
           key="welcome"
@@ -22,15 +22,17 @@ const RouterComponent = () => {
           component={FacebookLoginForm}
           hideNavBar
         />
-        <Scene
-          key="courseDetails"
-          component={CourseDetails}
-          title="Course Details"
-        />
+      </Scene>
+      <Scene key="main">
         <Scene
           key="courseList"
           component={CourseList}
           title="Nearby Courses"
+        />
+        <Scene
+          key="courseDetails"
+          component={CourseDetails}
+          title="Course Details"
         />
         <Scene
           key="scorecardForm"
