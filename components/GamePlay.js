@@ -32,6 +32,15 @@ class GamePlay extends Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    console.log('componentWillReceiveProps. Next props:', nextProps)
+    // console.log('size:', nextProps.gameScores.hole_18);
+    if (nextProps.gameScores.hole_18) {
+      console.log('EIGHTEEN!');
+      this.saveScorecard(nextProps);
+    }
+  }
+
   onIncrement(player, index) {
     const scores = this.state.scores;
     scores[index] += 1;
@@ -44,10 +53,7 @@ class GamePlay extends Component {
     this.setState({ ...this.state, scores });
   }
 
-  saveScorecard() {
-    const { currentHole, scores }  = this.state;
-    this.props.saveScores({ currentHole, scores });
-
+  saveScorecard(nextProps) {
     const date = new Date();
     const currentDate = (date.getMonth()+1) + '/'
                     + date.getDate() + '/'
@@ -60,7 +66,7 @@ class GamePlay extends Component {
         currentDate
       },
       players: this.props.players,
-      scores: this.props.gameScores
+      scores: nextProps.gameScores
     };
     this.props.saveScorecard({ scorecardInfo });
   }
@@ -97,7 +103,7 @@ class GamePlay extends Component {
       )
     } else {
       return (
-        <Button onPress={this.saveScorecard.bind(this)}>Save Scorecard</Button>
+        <Button onPress={this.onPressNextHole.bind(this)}>Save Scorecard</Button>
       )
     }
   }
