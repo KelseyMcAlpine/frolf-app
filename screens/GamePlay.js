@@ -109,7 +109,7 @@ class GamePlay extends Component {
 
   render() {
     return (
-      <View>
+      <View style={{ backgroundColor: '#EEEEEE' }}>
         <HoleForm
           currentHole={this.state.currentHole}
           holeDetails={this.props.holeDetails}

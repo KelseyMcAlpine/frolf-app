@@ -36,7 +36,7 @@ class CourseList extends Component {
     }
 
     return (
-      <ScrollView>
+      <ScrollView style={{ backgroundColor: '#EEEEEE' }}>
         {this.renderCourses()}
       </ScrollView>
     );

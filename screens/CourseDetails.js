@@ -67,7 +67,7 @@ class CourseDetails extends Component {
     const privateStatus = this.props.courseDetails.private;
 
     return (
-      <ScrollView>
+      <ScrollView style={{ backgroundColor: '#EEEEEE' }}>
         <Card>
           <ImageSection>
             <Image source={{ uri: this.constructImageUrl() }} style={styles.imageStyle} />

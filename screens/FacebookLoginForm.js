@@ -48,6 +48,7 @@ const styles = {
     width: SCREEN_WIDTH,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#EEEEEE'
   },
 };
 

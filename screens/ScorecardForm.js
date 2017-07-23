@@ -66,7 +66,7 @@ class ScorecardForm extends Component {
     const { user_image_url, name } = this.props.user_info
 
     return (
-      <Card>
+      <Card style={{ backgroundColor: '#EEEEEE' }}>
         <CardSection>
           <Text>Players</Text>
         </CardSection>
