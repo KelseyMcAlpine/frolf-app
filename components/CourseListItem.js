@@ -19,11 +19,11 @@ class CourseListItem extends Component {
           <Card>
             <ImageSection imageURL='https://www.dgcoursereview.com/course_pics/5/710589e1_m.jpg' />
 
-            <CardSection style={{ borderBottomWidth: 0 }}>
+            <CardSection style={{ paddingBottom: 0 }}>
               <Text style={styles.titleStyle}>{name}</Text>
             </CardSection>
 
-            <CardSection style={{ justifyContent: 'space-between', paddingTop: 3 }}>
+            <CardSection style={{ paddingTop: 3, justifyContent: 'space-between' }}>
               <Text style={styles.subTitleSyle}>{distance}</Text>
               <Rating rating={rating} />
             </CardSection>
