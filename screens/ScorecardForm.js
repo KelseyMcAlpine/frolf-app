@@ -66,43 +66,45 @@ class ScorecardForm extends Component {
     const { user_image_url, name } = this.props.user_info
 
     return (
-      <Card style={{ backgroundColor: '#EEEEEE' }}>
-        <CardSection>
-          <Text>Players</Text>
-        </CardSection>
+      <View style={{ backgroundColor: '#EEEEEE' }}>
+        <Card>
+          <CardSection>
+            <Text>Players</Text>
+          </CardSection>
 
-        {this.renderPlayers()}
+          {this.renderPlayers()}
 
-        <CardSection>
-          <Button onPress={() => this.setState({ showModal: !this.state.showModal }) }>
-            Add Player
-          </Button>
-        </CardSection>
+          <CardSection>
+            <Button onPress={() => this.setState({ showModal: !this.state.showModal }) }>
+              Add Player
+            </Button>
+          </CardSection>
 
-        <CardSection>
-          <View>
-            <Text>Course Details</Text>
-            <Text>{courseName}</Text>
-            <Text>{courseHoles}</Text>
-          </View>
-        </CardSection>
+          <CardSection>
+            <View>
+              <Text>Course Details</Text>
+              <Text>{courseName}</Text>
+              <Text>{courseHoles}</Text>
+            </View>
+          </CardSection>
 
-        <CardSection>
-          <Button onPress={this.onCancelScorecard.bind(this)}>
-            Cancel
-          </Button>
-          <Button onPress={this.onBeginScorecard.bind(this)}>
-            Begin Game
-          </Button>
-        </CardSection>
+          <CardSection>
+            <Button onPress={this.onCancelScorecard.bind(this)}>
+              Cancel
+            </Button>
+            <Button onPress={this.onBeginScorecard.bind(this)}>
+              Begin Game
+            </Button>
+          </CardSection>
 
-        <AddPlayerModal
-          visible={this.state.showModal}
-          onAccept={this.onAddPlayer.bind(this)}
-          onDecline={this.onCancelAddPlayer.bind(this)}
-          onChangeText={text => this.setState({ addPlayerForm: text })}
-        />
-      </Card>
+          <AddPlayerModal
+            visible={this.state.showModal}
+            onAccept={this.onAddPlayer.bind(this)}
+            onDecline={this.onCancelAddPlayer.bind(this)}
+            onChangeText={text => this.setState({ addPlayerForm: text })}
+            />
+        </Card>
+      </View>
     );
   }
 }
