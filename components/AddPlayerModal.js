@@ -1,9 +1,9 @@
 import React from 'react';
-import { Text, View, Modal } from 'react-native';
-import { CardSection, Card, Button, Input } from './common';
+import { Text, KeyboardAvoidingView, Modal } from 'react-native';
+import { CardSection, Card, Button, GrayButton, Input } from './common';
 
 const AddPlayerModal = ({ children, visible, onAccept, onDecline, onChangeText }) => {
-  const { containerStyle, textStyle, cardSectionStyle } = styles;
+  const { containerStyle, textStyle, cardSectionStyle, headerStyle } = styles;
 
   return (
     <Modal
@@ -12,29 +12,40 @@ const AddPlayerModal = ({ children, visible, onAccept, onDecline, onChangeText }
       transparent
       visible={visible}
     >
-      <View style={containerStyle}>
+      <KeyboardAvoidingView style={containerStyle} behavior="padding">
           <CardSection style={cardSectionStyle}>
-            <Text>Add Player</Text>
+            <Text style={headerStyle}>New Player</Text>
+          </CardSection>
+
+          <CardSection>
+            <Text style={textStyle}>Player Name:</Text>
           </CardSection>
 
           <CardSection>
             <Input
-              label="Name"
               placeholder="Ada Lovelace"
               onChangeText={onChangeText}
             />
           </CardSection>
 
           <CardSection>
-            <Button onPress={onDecline}>Cancel</Button>
-            <Button onPress={onAccept}>Save</Button>
+            <GrayButton onPress={onDecline}>CANCEL</GrayButton>
+            <Button onPress={onAccept} style={{ marginLeft: 9 }}>ADD PLAYER</Button>
           </CardSection>
-      </View>
+      </KeyboardAvoidingView>
     </Modal>
   );
 };
 
 const styles = {
+  headerStyle: {
+    fontSize: 21,
+    fontWeight: '600',
+  },
+  textStyle: {
+    fontSize: 18,
+    color: 'rgba(0,0,0,0.75)'
+  },
   cardSectionStyle: {
     justifyContent: 'flex-start',
   },
@@ -45,11 +56,11 @@ const styles = {
     lineHeight: 40,
   },
   containerStyle: {
-    backgroundColor: 'rgba(0, 0, 0, 0.75)',
-    position: 'relative',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    // position: 'relative',
     flex: 1,
     justifyContent: 'flex-end',
-    marginBottom: 200
+    // marginBottom: 200
   },
 };
 

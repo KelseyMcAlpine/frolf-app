@@ -10,7 +10,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 
 const RouterComponent = () => {
-  const { sceneStyle } = styles;
+  const { sceneStyle, navStyle } = styles;
   return (
     <Router>
       <Scene
@@ -32,6 +32,7 @@ const RouterComponent = () => {
       <Scene
         key="main"
         titleStyle={{ fontWeight: '600' }}
+        navigationBarStyle={navStyle}
       >
         <Scene
           key="courseList"
@@ -70,6 +71,9 @@ const styles = {
   sceneStyle: {
     paddingTop: 63,
     backgroundColor: '#EEEEEE'
+  },
+  navStyle: {
+    backgroundColor: '#fff',
   }
 };
 
