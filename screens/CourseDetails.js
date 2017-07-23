@@ -4,7 +4,7 @@ import { Text, View, ScrollView, Image } from 'react-native';
 import { Button, GrayButton, Card, CardSection, Spinner, ImageSection, Rating } from '../components/common';
 import { courseDetailsFetch, createScorecardForm } from '../actions';
 import { FontAwesome } from '@expo/vector-icons';
-import { MapView } from 'expo';
+import { MapView, WebBrowser } from 'expo';
 
 class CourseDetails extends Component {
   constructor(props) {
@@ -34,6 +34,12 @@ class CourseDetails extends Component {
 
   onRegionChangeComplete = (region) => {
     this.setState({ region });
+  }
+
+  onGetDirections = () => {
+    const courseLat = this.props.courseDetails.latitude;
+    const courseLon = this.props.courseDetails.longitude;
+    WebBrowser.openBrowserAsync(`http://maps.apple.com/?daddr=${courseLat},${courseLon}`);
   }
 
   onPressStart() {
@@ -132,7 +138,7 @@ class CourseDetails extends Component {
           </CardSection>
 
           <CardSection style={{ borderTopWidth: 1, borderColor: '#ddd', paddingBottom: 0 }}>
-            <GrayButton>Get Directions</GrayButton>
+            <GrayButton onPress={this.onGetDirections}>Get Directions</GrayButton>
           </CardSection>
 
           <CardSection style={{ paddingTop: 9 }}>
