@@ -138,11 +138,11 @@ class CourseDetails extends Component {
           </CardSection>
 
           <CardSection style={{ borderTopWidth: 1, borderColor: '#ddd', paddingBottom: 0 }}>
-            <GrayButton onPress={this.onGetDirections}>Get Directions</GrayButton>
+            <GrayButton onPress={this.onGetDirections}>GET DIRECTIONS</GrayButton>
           </CardSection>
 
           <CardSection style={{ paddingTop: 9 }}>
-            <Button onPress={this.onPressStart.bind(this)}>Start Game</Button>
+            <Button onPress={this.onPressStart.bind(this)}>NEW SCORECARD</Button>
           </CardSection>
         </Card>
       </ScrollView>

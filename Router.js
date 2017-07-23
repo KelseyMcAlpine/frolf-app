@@ -9,7 +9,7 @@ import WelcomeScreen from './screens/WelcomeScreen';
 
 const RouterComponent = () => {
   return (
-    <Router sceneStyle={{ paddingTop: 63 }}>
+    <Router sceneStyle={{ paddingTop: 63, backgroundColor: '#EEEEEE' }}>
       <Scene key="auth">
         <Scene
           initial

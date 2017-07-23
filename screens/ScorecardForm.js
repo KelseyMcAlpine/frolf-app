@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Text, View, ActivityIndicator } from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { saveScorecard, savePlayers } from '../actions';
-import { Card, CardSection, Input, Button } from '../components/common';
+import { Card, CardSection, Input, Button, GrayButton, Spinner } from '../components/common';
 import { AddPlayerModal } from '../components/AddPlayerModal';
+import { MaterialIcons } from '@expo/vector-icons';
 
 class ScorecardForm extends Component {
   constructor(props) {
@@ -45,19 +46,15 @@ class ScorecardForm extends Component {
   renderPlayers() {
     return this.state.players.map((player, index) => {
       return (
-        <CardSection key={index}>
-          <Text>{player}</Text>
+        <CardSection key={index} style={{ borderTopWidth: 1, borderColor: '#ddd' }}>
+          <Text style={styles.textStyle}>{player}</Text>
         </CardSection>
       );
     });
   }
 
   render() {
-    if (!this.props.holeDetails) {
-      return (
-          <ActivityIndicator size='large' />
-      );
-    }
+    if (!this.props.holeDetails) { return <Spinner /> }
 
     const { holeDetails } = this.props;
     const courseName = holeDetails[0].name;
@@ -66,34 +63,34 @@ class ScorecardForm extends Component {
     const { user_image_url, name } = this.props.user_info
 
     return (
-      <View style={{ backgroundColor: '#EEEEEE' }}>
         <Card>
-          <CardSection>
-            <Text>Players</Text>
+          <CardSection style={{ justifyContent: 'space-between' }}>
+            <Text style={styles.headerStyle}>Players</Text>
+            <TouchableOpacity onPress={() => this.setState({ showModal: !this.state.showModal })} >
+              <MaterialIcons name="person-add" size={24} color="#6BD13D" />
+            </TouchableOpacity>
           </CardSection>
 
           {this.renderPlayers()}
 
-          <CardSection>
-            <Button onPress={() => this.setState({ showModal: !this.state.showModal }) }>
-              Add Player
-            </Button>
+          <CardSection style={{ paddingTop: 24, borderBottomWidth: 1, borderColor: '#ddd' }}>
+            <Text style={styles.headerStyle}>Course Details</Text>
           </CardSection>
 
           <CardSection>
             <View>
-              <Text>Course Details</Text>
-              <Text>{courseName}</Text>
-              <Text>{courseHoles}</Text>
+              <Text style={styles.textStyle}>{courseName}</Text>
+              <Text style={styles.textStyle}>{courseHoles}</Text>
+              <Text style={styles.textStyle}>Par 1</Text>
             </View>
           </CardSection>
 
           <CardSection>
-            <Button onPress={this.onCancelScorecard.bind(this)}>
-              Cancel
-            </Button>
-            <Button onPress={this.onBeginScorecard.bind(this)}>
-              Begin Game
+            <GrayButton onPress={this.onCancelScorecard.bind(this)} style={{ marginRight: 9 }}>
+              CANCEL
+            </GrayButton>
+            <Button onPress={this.onBeginScorecard.bind(this)} style={{ marginLeft: 9 }}>
+              BEGIN GAME
             </Button>
           </CardSection>
 
@@ -104,9 +101,19 @@ class ScorecardForm extends Component {
             onChangeText={text => this.setState({ addPlayerForm: text })}
             />
         </Card>
-      </View>
     );
   }
+}
+
+const styles = {
+  headerStyle: {
+    fontSize: 21,
+    fontWeight: '600',
+  },
+  textStyle: {
+    fontSize: 18,
+    color: 'rgba(0,0,0,0.75)'
+  },
 }
 
 const mapStateToProps = (state) => {
