@@ -5,3 +5,4 @@ export * from './Input';
 export * from './Spinner';
 export * from './ImageSection';
 export * from './Rating';
+export * from './GrayButton';

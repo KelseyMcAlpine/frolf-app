@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Text, View, ScrollView, Image } from 'react-native';
-import { Button, Card, CardSection, Spinner, ImageSection, Rating } from '../components/common';
+import { Button, GrayButton, Card, CardSection, Spinner, ImageSection, Rating } from '../components/common';
 import { courseDetailsFetch, createScorecardForm } from '../actions';
+import { FontAwesome } from '@expo/vector-icons';
 import { MapView } from 'expo';
 
 class CourseDetails extends Component {
@@ -67,15 +68,22 @@ class CourseDetails extends Component {
         <Card>
           <ImageSection imageURL={this.constructImageUrl()} />
 
-          <CardSection>
-            <Text>{name}</Text>
-          </CardSection>
-
-          <CardSection>
+          <CardSection style={{
+            justifyContent: 'space-between',
+            alignItems: 'baseline',
+            borderBottomWidth: 1,
+            borderColor: '#ddd',
+          }}>
+            <Text style={styles.titleStyle}>{name}</Text>
             <Rating rating={rating} />
           </CardSection>
 
-          <CardSection>
+          <CardSection style={{
+            borderBottomWidth: 1,
+            borderColor: '#ddd',
+            paddingTop: 15,
+            paddingBottom: 15,
+          }}>
             <Text>
               Decription placeholder text Located west of Rochester
               N.Y. in the town of Riga. It is an 18 hole course with the
@@ -85,15 +93,24 @@ class CourseDetails extends Component {
             </Text>
           </CardSection>
 
-          <CardSection>
+          <CardSection style={{ borderBottomWidth: 1, borderColor: '#ddd', alignItems: 'center'}}>
+            <View style={{ width: 24 }}>
+              <FontAwesome name="dollar" size={24} color="#6BD13D" />
+            </View>
             <Text>{this.displayPublicPrivate(privateStatus)}</Text>
           </CardSection>
 
-          <CardSection>
+          <CardSection style={{ borderBottomWidth: 1, borderColor: '#ddd', alignItems: 'center'}}>
+            <View style={{ width: 24 }}>
+              <FontAwesome name="hashtag" size={18} color="#6BD13D" />
+            </View>
             <Text>{holes} Holes</Text>
           </CardSection>
 
-          <CardSection>
+          <CardSection style={{ borderBottomWidth: 1, borderColor: '#ddd', alignItems: 'center'}}>
+            <View style={{ width: 24 }}>
+              <FontAwesome name="map-marker" size={24} color="#6BD13D" />
+            </View>
             <Text>Distance from current location</Text>
           </CardSection>
 
@@ -108,17 +125,18 @@ class CourseDetails extends Component {
                   coordinate={this.state.marker.coordinate}
                   title={this.state.marker.title}
                   description={this.state.marker.description}
+                  pinColor='#6BD13D'
                 />
               </MapView>
             </View>
           </CardSection>
 
-          <CardSection>
-            <Button onPress={this.onPressStart.bind(this)}>Start Game</Button>
+          <CardSection style={{ borderTopWidth: 1, borderColor: '#ddd', paddingBottom: 0 }}>
+            <GrayButton>Get Directions</GrayButton>
           </CardSection>
 
-          <CardSection>
-            <Button>Get Directions</Button>
+          <CardSection style={{ paddingTop: 9 }}>
+            <Button onPress={this.onPressStart.bind(this)}>Start Game</Button>
           </CardSection>
         </Card>
       </ScrollView>
@@ -127,13 +145,16 @@ class CourseDetails extends Component {
 }
 
 const styles = {
+  titleStyle: {
+    fontSize: 18,
+  },
   imageStyle: {
     height: 250,
     flex: 1,
     width: null,
   },
   mapCard: {
-    height: 300
+    height: 200
   },
   mapContainer: {
     position: 'absolute',

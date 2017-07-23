@@ -40,7 +40,7 @@ const Rating = ({ rating }) => {
 
 const styles = {
   starRatingContainer: {
-    height: 40,
+    height: 15,
     width: 80,
     flexDirection: 'row',
     justifyContent: 'space-between',

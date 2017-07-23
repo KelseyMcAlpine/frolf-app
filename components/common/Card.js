@@ -12,11 +12,13 @@ const Card = (props) => {
 const styles = {
   containerStyle: {
     shadowColor: '#000',
+    backgroundColor: '#fff',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 1,
     marginTop: 12,
+    paddingBottom: 9,
   },
 };
 

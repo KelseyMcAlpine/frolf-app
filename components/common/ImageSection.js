@@ -16,7 +16,6 @@ const styles = {
     position: 'relative',
     paddingTop: 9,
     paddingLeft: 9,
-    paddingBottom: 9,
     paddingRight: 9,
     backgroundColor: '#fff',
     height: 200
