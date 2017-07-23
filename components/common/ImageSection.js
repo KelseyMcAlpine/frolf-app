@@ -1,10 +1,10 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Image } from 'react-native';
 
 const ImageSection = (props) => {
   return (
-    <View style={[styles.containerStyle, props.style]}>
-      {props.children}
+    <View style={styles.containerStyle}>
+      <Image source={{ uri: props.imageURL }} style={styles.imageStyle} />
     </View>
   );
 };
@@ -13,8 +13,18 @@ const styles = {
   containerStyle: {
     justifyContent: 'flex-start',
     flexDirection: 'row',
-    position: 'relative'
-  }
+    position: 'relative',
+    paddingTop: 9,
+    paddingLeft: 9,
+    paddingBottom: 9,
+    paddingRight: 9,
+    backgroundColor: '#fff',
+    height: 200
+  },
+  imageStyle: {
+    flex: 1,
+    width: null,
+  },
 };
 
 export { ImageSection };
