@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Text, View, ActivityIndicator, ScrollView, Image } from 'react-native';
+import { Text, View, ScrollView, Image } from 'react-native';
 import { Button, Card, CardSection, Spinner, ImageSection, Rating } from '../components/common';
 import { courseDetailsFetch, createScorecardForm } from '../actions';
 import { MapView } from 'expo';
 
 class CourseDetails extends Component {
-  // starting and zoom level for mapview
-  // lon and lat are center
   constructor(props) {
     super(props);
     const { courseDetails } = this.props;
@@ -57,9 +55,7 @@ class CourseDetails extends Component {
   render() {
     if (!this.state.mapLoaded) {
       return (
-        <View style={{ flex: 1, justifyContent: 'center' }}>
-          <ActivityIndicator size='large' />
-        </View>
+        <Spinner />
       );
     }
 
@@ -69,9 +65,7 @@ class CourseDetails extends Component {
     return (
       <ScrollView style={{ backgroundColor: '#EEEEEE' }}>
         <Card>
-          <ImageSection>
-            <Image source={{ uri: this.constructImageUrl() }} style={styles.imageStyle} />
-          </ImageSection>
+          <ImageSection imageURL={this.constructImageUrl()} />
 
           <CardSection>
             <Text>{name}</Text>
