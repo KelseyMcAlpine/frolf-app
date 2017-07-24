@@ -58,6 +58,8 @@ const RouterComponent = () => {
           component={ScorecardsList}
           title="Scorecard History"
           sceneStyle={sceneStyle}
+          onLeft={() => Actions.courseList() }
+          leftTitle="Done"
         />
         <Scene
           key="courseDetails"
