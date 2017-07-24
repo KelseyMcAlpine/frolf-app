@@ -8,7 +8,7 @@ import GamePlay from './screens/GamePlay';
 import WelcomeScreen from './screens/WelcomeScreen';
 import CourseSearch from './screens/CourseSearch';
 import CourseSort from './screens/CourseSort';
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons, Ionicons } from '@expo/vector-icons';
 
 
 const RouterComponent = () => {
@@ -40,8 +40,8 @@ const RouterComponent = () => {
           key="courseList"
           component={CourseList}
           title="Nearby Courses"
-          onLeft={() => Actions.courseSort() }
-          leftTitle={<MaterialIcons name="sort" size={24} color="#000" />}
+          onLeft={() => console.log('on Left') }
+          leftTitle={<Ionicons name="md-menu" size={24} color="#000" />}
           onRight={() => Actions.courseSearch() }
           rightTitle={<MaterialIcons name="search" size={24} color="#000" />}
           sceneStyle={sceneStyle}
@@ -88,6 +88,7 @@ const styles = {
   },
   navStyle: {
     backgroundColor: '#fff',
+    borderBottomWidth: 0,
     paddingTop: 10,
     height: 80
   }
