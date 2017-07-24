@@ -1,10 +1,9 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, ScrollView } from 'react-native';
+import { Text, View, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { scorecardsFetch } from '../actions';
-// import { Actions } from 'react-native-router-flux';
-import { Card, CardSection, Input, Button, GrayButton, Spinner } from '../components/common';
+import { Card, CardSection, Spinner } from '../components/common';
 
 class ScorecardsList extends Component {
 
@@ -39,30 +38,18 @@ class ScorecardsList extends Component {
   }
 
   render() {
-    if ( this.state.loadingScorecards == true ){
-      return <Spinner />
+    if (this.state.loadingScorecards) {
+      return <Spinner />;
     }
 
-    console.log('scorecards:', this.props.scorecards);
     return (
       <ScrollView>
         <Card>
           {this.renderScorecards()}
         </Card>
       </ScrollView>
-    )
+    );
   }
-}
-
-const styles = {
-  headerStyle: {
-    fontSize: 21,
-    fontWeight: '600',
-  },
-  textStyle: {
-    fontSize: 18,
-    color: 'rgba(0,0,0,0.75)'
-  },
 }
 
 const mapStateToProps = (state) => {
