@@ -1,11 +1,13 @@
 import React from 'react';
-import { Scene, Router } from 'react-native-router-flux';
+import { Scene, Router, Actions } from 'react-native-router-flux';
 import FacebookLoginForm from './screens/FacebookLoginForm';
 import CourseList from './screens/CourseList';
 import CourseDetails from './screens/CourseDetails';
 import ScorecardForm from './screens/ScorecardForm';
 import GamePlay from './screens/GamePlay';
 import WelcomeScreen from './screens/WelcomeScreen';
+import CourseSearch from './screens/CourseSearch';
+import CourseSort from './screens/CourseSort';
 import { MaterialIcons } from '@expo/vector-icons';
 
 
@@ -38,10 +40,22 @@ const RouterComponent = () => {
           key="courseList"
           component={CourseList}
           title="Nearby Courses"
-          onLeft={() => alert("left button")}
+          onLeft={() => Actions.courseSort() }
           leftTitle={<MaterialIcons name="sort" size={24} color="#000" />}
-          onRight={() => alert("right button")}
+          onRight={() => Actions.courseSearch() }
           rightTitle={<MaterialIcons name="search" size={24} color="#000" />}
+          sceneStyle={sceneStyle}
+        />
+        <Scene
+          key="courseSearch"
+          component={CourseSearch}
+          title="Find Courses"
+          sceneStyle={sceneStyle}
+        />
+        <Scene
+          key="courseSort"
+          component={CourseSort}
+          title="Sort Results"
           sceneStyle={sceneStyle}
         />
         <Scene
@@ -69,11 +83,13 @@ const RouterComponent = () => {
 
 const styles = {
   sceneStyle: {
-    paddingTop: 63,
+    paddingTop: 80,
     backgroundColor: '#EEEEEE'
   },
   navStyle: {
     backgroundColor: '#fff',
+    paddingTop: 10,
+    height: 80
   }
 };
 
