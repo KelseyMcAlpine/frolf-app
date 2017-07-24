@@ -13,18 +13,20 @@ class CourseListItem extends Component {
 
   render() {
     const { name, rating, image, distance } = this.props.course;
+    const { titleStyle, titleContainer, subTitleSyle, subTitleContainer } = styles;
+
     return (
       <TouchableWithoutFeedback onPress={this.onRowPress}>
-        <View>
+        <View>    
           <Card>
             <ImageSection imageURL='https://www.dgcoursereview.com/course_pics/5/710589e1_m.jpg' />
 
-            <CardSection style={{ paddingBottom: 0 }}>
-              <Text style={styles.titleStyle}>{name}</Text>
+            <CardSection style={titleContainer}>
+              <Text style={titleStyle}>{name}</Text>
             </CardSection>
 
-            <CardSection style={{ paddingTop: 3, justifyContent: 'space-between' }}>
-              <Text style={styles.subTitleSyle}>{distance}</Text>
+            <CardSection style={subTitleContainer}>
+              <Text style={subTitleSyle}>{distance}</Text>
               <Rating rating={rating} />
             </CardSection>
           </Card>
@@ -35,12 +37,19 @@ class CourseListItem extends Component {
 }
 
 const styles = {
+  titleContainer: {
+    paddingBottom: 0
+  },
   titleStyle: {
     fontSize: 18,
   },
   subTitleSyle: {
     fontSize: 15,
     color: 'rgba(0, 0, 0, 0.5)'
+  },
+  subTitleContainer: {
+    paddingTop: 3,
+    justifyContent: 'space-between'
   }
 };
 
