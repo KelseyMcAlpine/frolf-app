@@ -52,7 +52,6 @@ const styles = {
   textStyle: {
     flex: 1,
     fontSize: 18,
-    alignText: 'flex-start',
     lineHeight: 40,
   },
   containerStyle: {
