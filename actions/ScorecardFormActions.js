@@ -49,7 +49,7 @@ export const saveScorecard = ({ scorecardInfo }) => {
           type: SCORECARD_SAVE_SUCCESS,
           payload: response.key
         });
-        Actions.scorecardsList();
+        Actions.scorecardsList({ type: 'reset' });
       });
     //
   };
