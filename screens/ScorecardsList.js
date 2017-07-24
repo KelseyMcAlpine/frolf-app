@@ -4,18 +4,14 @@ import { Text, View, TouchableOpacity } from 'react-native';
 // import { Actions } from 'react-native-router-flux';
 import { Card, CardSection, Input, Button, GrayButton } from '../components/common';
 
-class CourseSort extends Component {
+class ScorecardsList extends Component {
 
   render() {
     return(
       <Card>
-      <CardSection>
-      <Text>Sort Courses</Text>
-      </CardSection>
-
-      <CardSection>
-      <Text>Sort</Text>
-      </CardSection>
+        <CardSection>
+          <Text>Scorecards List</Text>
+        </CardSection>
       </Card>
     )
   }
@@ -32,4 +28,4 @@ const styles = {
   },
 }
 
-export default CourseSort;
+export default ScorecardsList;

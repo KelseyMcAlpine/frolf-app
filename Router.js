@@ -7,7 +7,7 @@ import ScorecardForm from './screens/ScorecardForm';
 import GamePlay from './screens/GamePlay';
 import WelcomeScreen from './screens/WelcomeScreen';
 import CourseSearch from './screens/CourseSearch';
-import CourseSort from './screens/CourseSort';
+import ScorecardsList from './screens/ScorecardsList';
 import { MaterialIcons, Ionicons } from '@expo/vector-icons';
 
 
@@ -40,7 +40,7 @@ const RouterComponent = () => {
           key="courseList"
           component={CourseList}
           title="Nearby Courses"
-          onLeft={() => console.log('on Left') }
+          onLeft={() => Actions.scorecardsList() }
           leftTitle={<Ionicons name="md-menu" size={24} color="#000" />}
           onRight={() => Actions.courseSearch() }
           rightTitle={<MaterialIcons name="search" size={24} color="#000" />}
@@ -53,9 +53,9 @@ const RouterComponent = () => {
           sceneStyle={sceneStyle}
         />
         <Scene
-          key="courseSort"
-          component={CourseSort}
-          title="Sort Results"
+          key="scorecardsList"
+          component={ScorecardsList}
+          title="Scorecard History"
           sceneStyle={sceneStyle}
         />
         <Scene
