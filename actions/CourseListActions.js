@@ -59,10 +59,14 @@ export const courseListFetch = (userLat, userLon) => async (dispatch) => {
   }
 };
 
-export const courseDetailsFetch = (courseId, callback) => async (dispatch) => {
+export const courseDetailsFetch = (courseId, distance, callback) => async (dispatch) => {
   try {
     let { data } = await axios.get('https://api.myjson.com/bins/ny42n');
-    dispatch({ type: COURSE_DETAILS_FETCH_SUCCESS, payload: data });
+    dispatch({ type: COURSE_DETAILS_FETCH_SUCCESS, payload: {
+        courseDetails: data,
+        distance
+      }
+    });
     callback();
   } catch(e) {
     console.error(e);
