@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableOpacity, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { scorecardsFetch } from '../actions';
 // import { Actions } from 'react-native-router-flux';
@@ -45,9 +45,11 @@ class ScorecardsList extends Component {
 
     console.log('scorecards:', this.props.scorecards);
     return (
-      <Card>
-        {this.renderScorecards()}
-      </Card>
+      <ScrollView>
+        <Card>
+          {this.renderScorecards()}
+        </Card>
+      </ScrollView>
     )
   }
 }
