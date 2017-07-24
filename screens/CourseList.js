@@ -40,16 +40,10 @@ class CourseList extends Component {
   }
 
   render() {
-<<<<<<< HEAD
-    console.log('1. this.state.coursesLoading:', this.state.coursesloading);
-    if (this.state.coursesLoading === true ){
-=======
     if (this.state.coursesLoading){
->>>>>>> 4287821880c5c74f15d4a6185b19200c874f173d
       return <Spinner />
     }
 
-    console.log('2. this.state.coursesLoading:', this.state.coursesLoading);
     return (
       <ScrollView>
         {this.renderCourses()}
