@@ -57,12 +57,12 @@ export const courseListFetch = (userLat, userLon) => async (dispatch) => {
           latitude: course.latitude,
           longitude: course.longitude,
           rating: course.rating,
-          image: dgc_image.data.course_photo_url_medium,
+          imageURL: dgc_image.data.course_photo_url_medium,
           distance: google_distance.data.rows[0].elements[0].distance.text
         }
       })
     )
-
+    console.log('all info: ', allInfo);
     dispatch({ type: COURSE_LIST_FETCH_SUCCESS, payload: allInfo });
   } catch(e) {
     console.error(e);
