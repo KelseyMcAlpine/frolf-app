@@ -87,7 +87,7 @@ class ScorecardForm extends Component {
           </CardSection>
 
           <CardSection>
-            <GrayButton onPress={this.onCancelScorecard.bind(this)} style={{ marginRight: 9 }}>
+            <GrayButton onPress={this.onCancelScorecard.bind(this)} >
               CANCEL
             </GrayButton>
             <Button onPress={this.onBeginScorecard.bind(this)} style={{ marginLeft: 9 }}>
