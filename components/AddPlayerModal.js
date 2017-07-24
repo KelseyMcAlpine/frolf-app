@@ -17,18 +17,18 @@ const AddPlayerModal = ({ children, visible, onAccept, onDecline, onChangeText }
             <Text style={headerStyle}>New Player</Text>
           </CardSection>
 
-          <CardSection>
+          <CardSection style={{ paddingBottom: 3 }}>
             <Text style={textStyle}>Player Name:</Text>
           </CardSection>
 
-          <CardSection>
+          <CardSection style={{ paddingTop: 0 }}>
             <Input
               placeholder="Ada Lovelace"
               onChangeText={onChangeText}
             />
           </CardSection>
 
-          <CardSection>
+          <CardSection style={{ paddingTop: 60 }}>
             <GrayButton onPress={onDecline}>CANCEL</GrayButton>
             <Button onPress={onAccept} style={{ marginLeft: 9 }}>ADD PLAYER</Button>
           </CardSection>
