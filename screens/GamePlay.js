@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import { Card, CardSection, Button } from '../components/common';
 import HoleForm from '../components/HoleForm';
@@ -117,6 +117,7 @@ class GamePlay extends Component {
           scores={this.state.scores}
           onIncrementScore={this.onIncrement.bind(this) }
           onDecrementScore={this.onDecrement.bind(this) }
+          style={styles.viewStyle}
         />
         <CardSection>
           {this.renderButton()}
@@ -125,6 +126,14 @@ class GamePlay extends Component {
     );
   }
 }
+
+const SCREEN_HEIGHT = Dimensions.get('window').height;
+
+const styles = {
+  viewStyle: {
+    height: Dimensions.get('window').height,
+  },
+};
 
 const mapStateToProps = state => {
   const { holeDetails, players } = state.scorecardForm;

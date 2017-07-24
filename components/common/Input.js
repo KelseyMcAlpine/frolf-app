@@ -19,16 +19,17 @@ const Input = ({ label, value, onChangeText, placeholder, secureTextEntry }) => 
 
 const styles = {
   inputStyle: {
-    height: 50,
-    borderRadius: 5,
-    backgroundColor: '#fff',
-    paddingVertical: 18,
-    paddingHorizontal: 18,
     flex: 1,
     borderColor: '#6BD13D',
     borderWidth: 1,
+    backgroundColor: '#FFF',
+    paddingTop: 12,
+    paddingBottom: 12,
+    paddingLeft: 12,
+    paddingRight: 12,
+    height: 45,
+    borderRadius: 5,
   },
-
   labelStyle: {
     fontSize: 18,
     flex: 1

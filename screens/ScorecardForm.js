@@ -81,7 +81,7 @@ class ScorecardForm extends Component {
             <View>
               <Text style={styles.textStyle}>{courseName}</Text>
               <Text style={styles.textStyle}>{courseHoles}</Text>
-              <Text style={styles.textStyle}>Par 1</Text>
+              <Text style={styles.textStyle}>Tee 1</Text>
             </View>
           </CardSection>
 

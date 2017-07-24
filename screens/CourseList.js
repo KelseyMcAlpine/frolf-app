@@ -4,14 +4,17 @@ import { connect } from 'react-redux';
 import { ScrollView, Text, ActivityIndicator } from 'react-native';
 import { courseListFetch, getUserInfo, courseImagesFetch } from '../actions';
 import CourseListItem from '../components/CourseListItem';
-import { SearchBar } from 'react-native-elements';
+import { SideMenu } from 'react-native-elements';
 
 class CourseList extends Component {
 
-  state = {
-    coursesloading: true,
-    searchTerm: ''
-  };
+  constructor() {
+    super();
+
+    this.state = {
+      coursesloading: true,
+    }
+  }
 
   componentWillMount() {
     const userLat = 43.0001;
@@ -41,12 +44,6 @@ class CourseList extends Component {
 
     return (
       <ScrollView style={{ backgroundColor: '#EEEEEE' }}>
-        <SearchBar
-          containerStyle={{ backgroundColor: '#FFF', borderTopWidth: 0, borderBottomWidth: 0 }}
-          inputStyle={{ borderColor: '#6BD13D', borderWidth: 1, backgroundColor: '#FFF'}}
-          onChangeText={(text) => this.setState({ searchTerm: text }) }
-          placeholder='Search by location'
-        />
         {this.renderCourses()}
       </ScrollView>
     );
