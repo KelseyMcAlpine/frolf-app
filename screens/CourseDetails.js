@@ -68,7 +68,7 @@ class CourseDetails extends Component {
       );
     }
 
-    const { name, holes, rating, longitude, latitude } = this.props.courseDetails;
+    const { name, holes, rating, city, state } = this.props.courseDetails;
     const privateStatus = this.props.courseDetails.private;
 
     return (
@@ -102,22 +102,30 @@ class CourseDetails extends Component {
           </CardSection>
 
           <CardSection style={{ borderBottomWidth: 1, borderColor: '#ddd', alignItems: 'center'}}>
-            <View style={{ width: 24 }}>
-              <FontAwesome name="dollar" size={24} color="#6BD13D" />
+            <View style={{ width: 30 }}>
+              <FontAwesome name="map-marker" size={18} color="#6BD13D" />
+            </View>
+            <Text>{city}, {state}</Text>
+          </CardSection>
+
+          <CardSection style={{ borderBottomWidth: 1, borderColor: '#ddd', alignItems: 'center'}}>
+            <View style={{ width: 30 }}>
+              <FontAwesome name="dollar" size={18} color="#6BD13D" />
             </View>
             <Text>{this.displayPublicPrivate(privateStatus)}</Text>
           </CardSection>
 
+
           <CardSection style={{ borderBottomWidth: 1, borderColor: '#ddd', alignItems: 'center'}}>
-            <View style={{ width: 24 }}>
-              <FontAwesome name="hashtag" size={18} color="#6BD13D" />
+            <View style={{ width: 30 }}>
+              <FontAwesome name="hashtag" size={15} color="#6BD13D" />
             </View>
             <Text>{holes} Holes</Text>
           </CardSection>
 
           <CardSection style={{ borderBottomWidth: 1, borderColor: '#ddd', alignItems: 'center'}}>
-            <View style={{ width: 24 }}>
-              <FontAwesome name="map-marker" size={24} color="#6BD13D" />
+            <View style={{ width: 30 }}>
+              <FontAwesome name="car" size={15} color="#6BD13D" />
             </View>
             <Text>{this.props.courseDistance} from current location</Text>
           </CardSection>
