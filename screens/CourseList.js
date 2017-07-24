@@ -2,8 +2,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ScrollView, Text, ActivityIndicator } from 'react-native';
-import { courseListFetch, getUserInfo } from '../actions';
-import CourseListItem from './CourseListItem';
+import { courseListFetch, getUserInfo, courseImagesFetch } from '../actions';
+import CourseListItem from '../components/CourseListItem';
 
 class CourseList extends Component {
 
@@ -13,8 +13,14 @@ class CourseList extends Component {
     const userLat = 43.0001;
     const userLon = -77.6109;
 
+<<<<<<< HEAD:components/CourseList.js
     this.props.courseListFetch(userLat, userLon, () => { console.log('course list fetch callback'); });
     this.props.getUserInfo(this.props.token);
+=======
+    this.props.getUserInfo(this.props.token, () => {
+      this.props.courseListFetch(userLat, userLon);
+    });
+>>>>>>> 1f70e752f38283cae52d6cfc637be7583e742544:screens/CourseList.js
   }
 
   componentWillReceiveProps(nextProps) {
@@ -24,19 +30,18 @@ class CourseList extends Component {
   renderCourses() {
     return this.props.courses.map(course => {
       return (
-        <CourseListItem key={ course.course_id } course={ course } />
+        <CourseListItem key={course.key} course={course} />
       );
     });
   }
 
-
   render() {
-    if (this.coursesLoading){
-      return <ActivityIndicator size='large' />
+    if (this.state.coursesLoading){
+      return <Text>Loading</Text>
     }
 
     return (
-      <ScrollView>
+      <ScrollView style={{ backgroundColor: '#EEEEEE' }}>
         {this.renderCourses()}
       </ScrollView>
     );
@@ -49,4 +54,4 @@ const mapStateToProps = state => {
   return { courses, token };
 };
 
-export default connect(mapStateToProps, { courseListFetch, getUserInfo })(CourseList);
+export default connect(mapStateToProps, { courseListFetch, getUserInfo, courseImagesFetch })(CourseList);

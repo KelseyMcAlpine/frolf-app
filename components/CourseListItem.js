@@ -12,24 +12,20 @@ class CourseListItem extends Component {
   }
 
   render() {
-    const { name, rating } = this.props.course;
-
+    const { name, rating, image, distance } = this.props.course;
     return (
       <TouchableWithoutFeedback onPress={this.onRowPress}>
         <View>
           <Card>
-            <ImageSection>
-              <Image source={{ uri: 'https://www.dgcoursereview.com/course_pics/5/710589e1_m.jpg' }} style={styles.imageStyle} />
-            </ImageSection>
+            <ImageSection imageURL='https://www.dgcoursereview.com/course_pics/5/710589e1_m.jpg' />
 
-            <CardSection>
-              <View>
-                <Text>{name}</Text>
-                <View>
-                  <Text>Distance</Text>
-                  <Rating rating={rating} />
-                </View>
-              </View>
+            <CardSection style={{ paddingBottom: 0 }}>
+              <Text style={styles.titleStyle}>{name}</Text>
+            </CardSection>
+
+            <CardSection style={{ paddingTop: 3, justifyContent: 'space-between' }}>
+              <Text style={styles.subTitleSyle}>{distance}</Text>
+              <Rating rating={rating} />
             </CardSection>
           </Card>
         </View>
@@ -41,14 +37,11 @@ class CourseListItem extends Component {
 const styles = {
   titleStyle: {
     fontSize: 18,
-    paddingLeft: 15,
   },
-
-  imageStyle: {
-    height: 250,
-    flex: 1,
-    width: null,
-  },
+  subTitleSyle: {
+    fontSize: 15,
+    color: 'rgba(0, 0, 0, 0.5)'
+  }
 };
 
 export default connect(null, { courseDetailsFetch })(CourseListItem);
