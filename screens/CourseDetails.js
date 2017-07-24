@@ -7,14 +7,9 @@ import { FontAwesome } from '@expo/vector-icons';
 import { MapView, WebBrowser } from 'expo';
 
 class CourseDetails extends Component {
-<<<<<<< HEAD:components/CourseDetails.js
-  constructor({courseDetails}){
-    super({courseDetails});
-=======
   constructor(props) {
     super(props);
     const { courseDetails } = this.props;
->>>>>>> 1f70e752f38283cae52d6cfc637be7583e742544:screens/CourseDetails.js
     this.state = {
       mapLoaded: false,
       region: {
@@ -48,12 +43,8 @@ class CourseDetails extends Component {
   }
 
   onPressStart() {
-<<<<<<< HEAD:components/CourseDetails.js
     const courseId = this.props.courseDetails.course_id;
     this.props.createScorecardForm(courseId);
-=======
-    this.props.createScorecardForm({ courseId: this.props.courseId });
->>>>>>> 1f70e752f38283cae52d6cfc637be7583e742544:screens/CourseDetails.js
   }
 
   constructImageUrl() {

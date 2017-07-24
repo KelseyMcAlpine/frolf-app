@@ -12,8 +12,7 @@ import {
   COURSE_DETAILS_FETCH_SUCCESS
 } from './types';
 
-<<<<<<< HEAD
-export const courseListFetch = (userLat, userLon, callback) => async (dispatch) => {
+export const courseListFetch = (userLat, userLon) => async (dispatch) => {
   try {
     let { data } = await axios.get('https://www.dgcoursereview.com/api_test/index.php', {
         params: {
@@ -26,24 +25,18 @@ export const courseListFetch = (userLat, userLon, callback) => async (dispatch) 
         }
       }
     );
-    dispatch({ type: COURSE_LIST_FETCH_SUCCESS, payload: data });
-    callback();
-=======
-export const courseListFetch = (userLat, userLon) => async (dispatch) => {
-  try {
-    let { data } = await axios.get('https://api.myjson.com/bins/12qesz');
     let allInfo = await Promise.all(
       data.map(async (course) => {
-        // let dgc_image = await axios.get('https://www.dgcoursereview.com/api_test/index.php', {
-        //   params: {
-        //     key: DG_API_KEY,
-        //     mode: 'crsephto',
-        //     id: course.course_id,
-        //     sig: DG_COURSE_IMAGE_SIG
-        //   }
-        // });
+        let dgc_image = await axios.get('https://www.dgcoursereview.com/api_test/index.php', {
+          params: {
+            key: DG_API_KEY,
+            mode: 'crsephto',
+            id: course.course_id,
+            sig: DG_COURSE_IMAGE_SIG
+          }
+        });
 
-        let dgc_image = await axios.get('https://api.myjson.com/bins/a546b');
+        // let dgc_image = await axios.get('https://api.myjson.com/bins/a546b');
 
         const courseLatLon = `${course.latitude},${course.longitude}`;
         const userLatLon = `${userLat},${userLon}`;
@@ -71,7 +64,6 @@ export const courseListFetch = (userLat, userLon) => async (dispatch) => {
     )
 
     dispatch({ type: COURSE_LIST_FETCH_SUCCESS, payload: allInfo });
->>>>>>> 1f70e752f38283cae52d6cfc637be7583e742544
   } catch(e) {
     console.error(e);
   }
@@ -79,7 +71,6 @@ export const courseListFetch = (userLat, userLon) => async (dispatch) => {
 
 export const courseDetailsFetch = (courseId, callback) => async (dispatch) => {
   try {
-<<<<<<< HEAD
     let { data } = await axios.get('https://www.dgcoursereview.com/api_test/index.php', {
       params: {
         key: DG_API_KEY,
@@ -88,9 +79,6 @@ export const courseDetailsFetch = (courseId, callback) => async (dispatch) => {
         sig: DG_COURSE_DETAILS_SIG
       }
     });
-=======
-    let { data } = await axios.get('https://api.myjson.com/bins/ny42n');
->>>>>>> 1f70e752f38283cae52d6cfc637be7583e742544
     dispatch({ type: COURSE_DETAILS_FETCH_SUCCESS, payload: data });
     callback();
   } catch(e) {
