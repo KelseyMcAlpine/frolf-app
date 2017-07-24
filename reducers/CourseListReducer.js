@@ -7,7 +7,7 @@ export default (state = INITIAL_STATE, action) => {
     case COURSE_LIST_FETCH_SUCCESS:
       return { ...state, courses: action.payload };
     case COURSE_DETAILS_FETCH_SUCCESS:
-      return { ...state, courseDetails: action.payload };
+      return { ...state, courseDetails: action.payload.courseDetails, courseDistance: action.payload.distance };
     default:
       return state;
   }
