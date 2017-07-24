@@ -1,45 +1,92 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView, Image } from 'react-native';
+import { Text, View, ScrollView, Image, ListView, TouchableHiglight } from 'react-native';
+import { List, ListItem } from 'react-native-elements'
+import { Spinner } from '../components/common';
 import Expo from 'expo';
 
 class ContactList extends Component {
 
-  componentWillMount() {
-    async function showFirstContactAsync() {
+  constructor(props) {
+    super(props);
 
-    const permission = await Expo.Permissions.askAsync(Expo.Permissions.CONTACTS);
+    this.state = {
+      contacts: []
+    };
+  }
 
-    if (permission.status !== 'granted') {
-      console.log('access denied!');
+  _loadContacts = async () => {
+  // Ask for permission to query contacts.
+  const permission = await Expo.Permissions.askAsync(Expo.Permissions.CONTACTS);
+  if (permission.status !== 'granted') {
+    // Permission was denied...
     return;
-    }
+  }
 
-    const contacts = await Expo.Contacts.getContactsAsync({
-      fields: [
-        Expo.Contacts.PHONE_NUMBERS,
-        Expo.Contacts.EMAILS,
-      ],
-      pageSize: 10,
-      pageOffset: 0,
+  const contacts = await Expo.Contacts.getContactsAsync({
+    fields: [
+      Expo.Contacts.THUMBNAIL,
+      Expo.Contacts.IMAGE,
+    ],
+  });
+
+  console.log(contacts);
+
+  let results = [];
+
+  if (contacts.total > 0) {
+    contacts.data.map((contact) => {
+      results.push({
+        name: contact.name,
+        image: contact.thumbnail.uri ||' https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+        id: contact.id,
+      });
     });
+  }
 
-    console.log('contacts:', contacts);
+  this.setState({
+    contacts: results
+  });
 
-    if (contacts.total > 0) {
-      Alert.alert(
-        'Your first contact is...',
-        `Name: ${contacts.data[0].name}\n` +
-        `Phone numbers: ${JSON.stringify(contacts.data[0].phoneNumbers)}\n` +
-        `Emails: ${JSON.stringify(contacts.data[0].emails)}`
-      );
-    }
+  };
+
+  componentDidMount() {
+    this._loadContacts().done();
   }
 
   render() {
+    if (this.state.contacts === []) {
+      return <Spinner />
+    }
+
     return (
-      <Text></Text>
+      <ScrollView>
+        <List>
+          {
+            this.state.contacts.map((contact, i) => (
+              <ListItem
+                roundAvatar
+                avatar={{uri:contact.image}}
+                key={i}
+                title={contact.name}
+                switchButton={true}
+                onSwitch={() => console.log('turned on', contact) }
+                switchOnTintColor='#6BD13D'
+              />
+            ))
+          }
+        </List>
+      </ScrollView>
     );
   }
 }
+
+const styles = {
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+};
 
 export default ContactList;
