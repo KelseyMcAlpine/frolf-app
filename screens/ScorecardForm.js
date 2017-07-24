@@ -67,6 +67,7 @@ class ScorecardForm extends Component {
           <CardSection style={{ justifyContent: 'space-between' }}>
             <Text style={styles.headerStyle}>Players</Text>
             <TouchableOpacity onPress={() => this.setState({ showModal: !this.state.showModal })} >
+            // <TouchableOpacity onPress={() => Actions.contactList() } >
               <MaterialIcons name="person-add" size={24} color="#6BD13D" />
             </TouchableOpacity>
           </CardSection>
