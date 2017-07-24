@@ -1,4 +1,5 @@
 import React from 'react';
+import { MaterialIcons, Ionicons } from '@expo/vector-icons';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import FacebookLoginForm from './screens/FacebookLoginForm';
 import CourseList from './screens/CourseList';
@@ -9,7 +10,6 @@ import WelcomeScreen from './screens/WelcomeScreen';
 import CourseSearch from './screens/CourseSearch';
 import ScorecardsList from './screens/ScorecardsList';
 import ContactList from './screens/ContactList';
-import { MaterialIcons, Ionicons } from '@expo/vector-icons';
 
 
 const RouterComponent = () => {
@@ -18,13 +18,13 @@ const RouterComponent = () => {
     <Router>
       <Scene
         key="auth"
-        hideNavBar={true}
+        hideNavBar
       >
         <Scene
           initial
           key="welcome"
           component={WelcomeScreen}
-          hideNavBar={true}
+          hideNavBar
         />
         <Scene
           key="facebookLogin"
@@ -41,9 +41,9 @@ const RouterComponent = () => {
           key="courseList"
           component={CourseList}
           title="Nearby Courses"
-          onLeft={() => Actions.scorecardsList() }
+          onLeft={() => Actions.scorecardsList()}
           leftTitle={<Ionicons name="md-menu" size={24} color="#000" />}
-          onRight={() => Actions.courseSearch() }
+          onRight={() => Actions.courseSearch()}
           rightTitle={<MaterialIcons name="search" size={24} color="#000" />}
           sceneStyle={sceneStyle}
         />
@@ -58,7 +58,7 @@ const RouterComponent = () => {
           component={ScorecardsList}
           title="Scorecard History"
           sceneStyle={sceneStyle}
-          onLeft={() => Actions.courseList() }
+          onLeft={() => Actions.courseList()}
           leftTitle="Done"
         />
         <Scene
