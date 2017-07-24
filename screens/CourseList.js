@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ScrollView, Text, ActivityIndicator } from 'react-native';
 import { courseListFetch, getUserInfo, courseImagesFetch } from '../actions';
+import { Spinner } from '../components/common';
 import CourseListItem from '../components/CourseListItem';
 import { SideMenu } from 'react-native-elements';
 
@@ -26,6 +27,7 @@ class CourseList extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log('receiving props. should reset courses loading to false');
     this.setState({ coursesLoading: false });
   }
 
@@ -38,10 +40,12 @@ class CourseList extends Component {
   }
 
   render() {
-    if (this.state.coursesLoading){
-      return <Text>Loading</Text>
+    console.log('1. this.state.coursesLoading:', this.state.coursesloading);
+    if (this.state.coursesLoading === true ){
+      return <Spinner />
     }
 
+    console.log('2. this.state.coursesLoading:', this.state.coursesLoading);
     return (
       <ScrollView style={{ backgroundColor: '#EEEEEE' }}>
         {this.renderCourses()}
