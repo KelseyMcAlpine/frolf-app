@@ -62,6 +62,7 @@ class ScorecardForm extends Component {
 
     const { user_image_url, name } = this.props.user_info
 
+    // <TouchableOpacity onPress={() => Actions.contactList() } >
     return (
         <Card>
           <CardSection style={{ justifyContent: 'space-between' }}>

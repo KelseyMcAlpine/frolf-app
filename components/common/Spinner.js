@@ -5,7 +5,7 @@ const Spinner = ({ size }) => {
   console.log('should be displaying spinner');
   return (
     <View style={styles.spinnerStyle}>
-      <ActivityIndicator size={size || 'large'} color='#6BD13D'/>
+      <ActivityIndicator size={size || 'large'} />
     </View>
   );
 };
