@@ -8,6 +8,7 @@ import GamePlay from './screens/GamePlay';
 import WelcomeScreen from './screens/WelcomeScreen';
 import CourseSearch from './screens/CourseSearch';
 import ScorecardsList from './screens/ScorecardsList';
+import ContactList from './screens/ContactList';
 import { MaterialIcons, Ionicons } from '@expo/vector-icons';
 
 
@@ -68,6 +69,12 @@ const RouterComponent = () => {
           key="scorecardForm"
           component={ScorecardForm}
           title="New Scorecard"
+          sceneStyle={sceneStyle}
+        />
+        <Scene
+          key="contactList"
+          component={ContactList}
+          title="Contact List"
           sceneStyle={sceneStyle}
         />
         <Scene
