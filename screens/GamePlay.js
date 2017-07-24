@@ -119,7 +119,7 @@ class GamePlay extends Component {
           onDecrementScore={this.onDecrement.bind(this) }
           style={styles.viewStyle}
         />
-        <CardSection>
+      <CardSection style={{ paddingTop: 60 }}>
           {this.renderButton()}
         </CardSection>
       </View>
