@@ -31,9 +31,8 @@ class App extends Component {
   render() {
     const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
     return (
-      <Provider store={store} style={{backgroundColor: '#EEEEEE'}}>
+      <Provider store={store}>
         <Router />
-
       </Provider>
     );
   }
