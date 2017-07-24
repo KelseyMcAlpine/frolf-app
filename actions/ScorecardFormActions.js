@@ -43,15 +43,15 @@ export const saveScorecard = ({ scorecardInfo }) => {
   const { currentUser } = firebase.auth();
 
   return (dispatch) => {
-    // also need to send the scorecard info as props
-
     firebase.database().ref(`/users/${currentUser.uid}/scorecards`).push(scorecardInfo)
       .then((response) => {
         dispatch({
           type: SCORECARD_SAVE_SUCCESS,
           payload: response.key
         });
+        Actions.scorecardsList();
       });
     //
   };
+
 };
