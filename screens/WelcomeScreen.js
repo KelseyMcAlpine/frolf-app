@@ -5,9 +5,10 @@ import { AsyncStorage, Text } from 'react-native';
 import Slides from '../components/Slides';
 
 const SLIDE_DATA = [
-  { text: 'Welcome to Job App', color: '#6BD13D' },
-  { text: 'Set your location', color: '#6BD13D' },
-  { text: 'This is the last slide', color: '#6BD13D' }
+  { text: 'Search for Courses', color: '#6BD13D' },
+  { text: 'Create Scorecards', color: '#6BD13D' },
+  { text: 'Track Your Progress', color: '#6BD13D' },
+  { text: 'Get Sarted', color: '#6BD13D' }
 ];
 
 class WelcomeScreen extends Component {
@@ -15,7 +16,7 @@ class WelcomeScreen extends Component {
 
   async componentWillMount() {
     // used to clear token temporarily
-    // AsyncStorage.removeItem('fb_token');
+    AsyncStorage.removeItem('fb_token');
     const token = await AsyncStorage.getItem('fb_token');
 
     if (token) {
