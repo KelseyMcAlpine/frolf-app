@@ -7,23 +7,26 @@ import { FontAwesome } from '@expo/vector-icons';
 import { MapView, WebBrowser } from 'expo';
 
 class CourseDetails extends Component {
+
   constructor(props) {
     super(props);
-    const { courseDetails } = this.props;
+
+    const { latitude, longitude, name } = this.props.courseDetails;
+
     this.state = {
       mapLoaded: false,
       region: {
-        longitude: parseInt(courseDetails.longitude),
-        latitude: parseInt(courseDetails.latitude),
+        longitude: parseInt(longitude),
+        latitude: parseInt(latitude),
         longitudeDelta: 0.04,
         latitudeDelta: 0.09
       },
       marker: {
         coordinate: {
-          longitude: parseInt(courseDetails.longitude),
-          latitude: parseInt(courseDetails.latitude),
+          longitude: parseInt(longitude),
+          latitude: parseInt(latitude),
         },
-        title: courseDetails.name,
+        title: name,
       }
     }
   }
@@ -37,9 +40,8 @@ class CourseDetails extends Component {
   }
 
   onGetDirections = () => {
-    const courseLat = this.props.courseDetails.latitude;
-    const courseLon = this.props.courseDetails.longitude;
-    WebBrowser.openBrowserAsync(`http://maps.apple.com/?daddr=${courseLat},${courseLon}`);
+    const { latitude, longitude } = this.props.courseDetails;
+    WebBrowser.openBrowserAsync(`http://maps.apple.com/?daddr=${latitude},${longitude}`);
   }
 
   onPressStart() {
@@ -70,7 +72,7 @@ class CourseDetails extends Component {
     const privateStatus = this.props.courseDetails.private;
 
     return (
-      <ScrollView style={{ backgroundColor: '#EEEEEE' }}>
+      <ScrollView>
         <Card>
           <ImageSection imageURL={this.constructImageUrl()} />
 
@@ -117,7 +119,7 @@ class CourseDetails extends Component {
             <View style={{ width: 24 }}>
               <FontAwesome name="map-marker" size={24} color="#6BD13D" />
             </View>
-            <Text>Distance from current location</Text>
+            <Text>{this.props.courseDistance} from current location</Text>
           </CardSection>
 
           <CardSection style={styles.mapCard}>
@@ -181,8 +183,8 @@ const styles = {
   },
 };
 const mapStateToProps = state => {
-  const { courseDetails } = state.courses;
-  return { courseDetails };
+  const { courseDetails, courseDistance } = state.courses;
+  return { courseDetails, courseDistance };
 };
 
 export default connect(mapStateToProps, { createScorecardForm })(CourseDetails);
