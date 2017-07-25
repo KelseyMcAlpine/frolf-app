@@ -63,10 +63,9 @@ class GamePlay extends Component {
     const numOfHoles = (this.props.holeDetails.length) - 1;
     const nextHole = this.state.currentHole + 1;
     const { currentHole } = this.state;
-
+    const { holeDetails } = this.props;
 
     const scoresState = this.props.players.map(() => {
-      const { holeDetails } = this.props;
       const defaultScore = parseInt(holeDetails[currentHole].tee_1_par, 10);
 
       return defaultScore;

@@ -1,11 +1,10 @@
 // import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ScrollView, Text, ActivityIndicator } from 'react-native';
+import { ScrollView } from 'react-native';
 import { courseListFetch, getUserInfo, courseImagesFetch } from '../actions';
 import { Spinner } from '../components/common';
 import CourseListItem from '../components/CourseListItem';
-import { SideMenu } from 'react-native-elements';
 
 class CourseList extends Component {
 
@@ -14,7 +13,7 @@ class CourseList extends Component {
 
     this.state = {
       coursesLoading: true,
-    }
+    };
   }
 
   componentWillMount() {
@@ -26,8 +25,7 @@ class CourseList extends Component {
     });
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log('receiving props. should reset courses loading to false');
+  componentWillReceiveProps() {
     this.setState({ coursesLoading: false });
   }
 
@@ -40,8 +38,8 @@ class CourseList extends Component {
   }
 
   render() {
-    if (this.state.coursesLoading){
-      return <Spinner />
+    if (this.state.coursesLoading) {
+      return <Spinner />;
     }
 
     return (
@@ -58,4 +56,5 @@ const mapStateToProps = state => {
   return { courses, token };
 };
 
-export default connect(mapStateToProps, { courseListFetch, getUserInfo, courseImagesFetch })(CourseList);
+export default connect(mapStateToProps,
+  { courseListFetch, getUserInfo, courseImagesFetch })(CourseList);
