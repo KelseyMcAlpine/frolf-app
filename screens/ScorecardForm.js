@@ -77,7 +77,8 @@ class ScorecardForm extends Component {
       iconAndText,
       courseDetailsSection,
       textStyle,
-      buttonMargin
+      buttonMargin,
+      buttonPadding
     } = styles;
     // <TouchableOpacity onPress={() => Actions.contactList() } >
     return (
@@ -107,7 +108,7 @@ class ScorecardForm extends Component {
             </View>
           </CardSection>
 
-          <CardSection>
+          <CardSection style={buttonPadding}>
             <GrayButton onPress={this.onCancelScorecard.bind(this)} >
               CANCEL
             </GrayButton>
@@ -131,6 +132,9 @@ const styles = {
   headerStyle: {
     fontSize: 21,
     fontWeight: '600',
+  },
+  buttonPadding: {
+    paddingTop: 60
   },
   textStyle: {
     fontSize: 18,
