@@ -9,5 +9,6 @@ export const CREATE_SCORECARD_FORM_SUCCESS = 'create_scorecard_form_success';
 export const SAVE_PLAYERS_SUCCESS = 'save_players_success';
 export const SCORECARD_SAVE_SUCCESS = 'scorecard_save_success';
 export const SAVE_SCORES_SUCCESS = 'save_scores_success';
+export const CLEAR_SCORES_SUCCESS = 'clear_scores_success';
 
 export const SCORECARDS_FETCH_SUCCESS = 'scorecards_fetch_success';
