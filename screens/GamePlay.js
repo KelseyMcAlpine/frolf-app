@@ -16,10 +16,14 @@ class GamePlay extends Component {
       return 0;
     });
 
+    const defaultTotalScores = this.props.players.map(() => {
+      return 0;
+    });
+
     this.state = {
       currentHole: 1,
       scores: defaultScores,
-      totalScores: defaultScores
+      totalScores: defaultTotalScores
     };
   }
 
@@ -37,6 +41,10 @@ class GamePlay extends Component {
     console.log('in on increment');
     const { scores, totalScores } = this.state;
     console.log('before adding: scores, totalScores:', scores, totalScores);
+    console.log('index', index);
+    console.log('Scores[index] = ', typeof scores[index]);
+
+    console.log(scores[index] === totalScores[index] ? "They're the same" : "They're different");
 
     scores[index] += 1;
     totalScores[index] += 1;
