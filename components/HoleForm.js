@@ -6,7 +6,7 @@ import { Card, CardSection } from './common';
 class HoleForm extends Component {
 
   renderPlayerInputs() {
-    const { playerSection, textStyle, headerStyle, scoringSection } = styles;
+    const { playerSection, textStyle, headerStyle, scoringSection, label } = styles;
 
     return this.props.players.map((player, index) => {
       return (
@@ -14,6 +14,7 @@ class HoleForm extends Component {
           <CardSection style={playerSection}>
             <View style={{ flex: 1.5 }}>
               <Text style={textStyle}>{player}</Text>
+              <Text style={label}>{this.props.totalScores[index]}</Text>
             </View>
 
             <View style={scoringSection}>
