@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { CardSection, Button } from '../components/common';
 import HoleForm from '../components/HoleForm';
-import { saveScorecard, saveScores } from '../actions';
+import { saveScorecard, saveScores, clearScores } from '../actions';
 
 // TODO: Clear state if game is canceled/left
 
@@ -90,12 +90,15 @@ class GamePlay extends Component {
       details: {
         courseId: this.props.holeDetails[0].course_id,
         holes: (this.props.holeDetails.length) - 1,
-        currentDate
+        courseName: this.props.holeDetails[0].name,
+        city: this.props.holeDetails[0].city,
+        state: this.props.holeDetails[0].state,
+        date: currentDate
       },
       players: this.props.players,
       scores: nextProps.gameScores
     };
-    this.props.saveScorecard({ scorecardInfo });
+    this.props.saveScorecard({ scorecardInfo }, () => this.props.clearScores());
   }
 
   renderButton() {
@@ -152,4 +155,4 @@ const mapStateToProps = state => {
   return { holeDetails, players, gameScores };
 };
 
-export default connect(mapStateToProps, { saveScores, saveScorecard })(GamePlay);
+export default connect(mapStateToProps, { saveScores, saveScorecard, clearScores })(GamePlay);
