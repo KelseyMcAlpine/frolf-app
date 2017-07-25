@@ -12,16 +12,12 @@ class GamePlay extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      currentHole: 1,
-    };
-
     const defaultScores = this.props.players.map(() => {
       return 0;
     });
 
     this.state = {
-      currentHole: this.state.currentHole,
+      currentHole: 1,
       scores: defaultScores,
       totalScores: defaultScores
     };
@@ -38,12 +34,14 @@ class GamePlay extends Component {
   }
 
   onIncrement(player, index) {
-    const scores = this.state.scores;
-    const totalScores = this.state.totalScores;
+    console.log('in on increment');
+    const { scores, totalScores } = this.state;
+    console.log('before adding: scores, totalScores:', scores, totalScores);
 
     scores[index] += 1;
     totalScores[index] += 1;
 
+    console.log('after adding: scores, totalScores:', scores, totalScores);
     this.setState({ ...this.state, scores, totalScores });
   }
 
@@ -114,13 +112,13 @@ class GamePlay extends Component {
     if (currentHole < numOfHoles) {
       return (
         <Button onPress={this.onPressNextHole.bind(this)}>
-          Next Hole
+          NEXT HOLE
         </Button>
       );
     }
     return (
       <Button onPress={this.onPressNextHole.bind(this)}>
-        Save Scorecard
+        SAVE SCORECARD
       </Button>
     );
   }
