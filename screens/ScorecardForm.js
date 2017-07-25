@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableOpacity, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -82,7 +82,8 @@ class ScorecardForm extends Component {
     } = styles;
     // <TouchableOpacity onPress={() => Actions.contactList() } >
     return (
-        <Card>
+      <ScrollView>
+        <Card style={{ height: 600 }}>
           <CardSection style={iconAndText}>
             <Text style={headerStyle}>Players</Text>
             <TouchableOpacity onPress={() => this.setState({ showModal: !this.state.showModal })} >
@@ -124,6 +125,7 @@ class ScorecardForm extends Component {
             onChangeText={text => this.setState({ addPlayerForm: text })}
           />
         </Card>
+      </ScrollView>
     );
   }
 }
@@ -153,7 +155,7 @@ const styles = {
     borderColor: '#ddd'
   },
   buttonMargin: {
-    marginLeft: 9
+    marginLeft: 6
   }
 };
 

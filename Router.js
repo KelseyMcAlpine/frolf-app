@@ -10,6 +10,7 @@ import WelcomeScreen from './screens/WelcomeScreen';
 import CourseSearch from './screens/CourseSearch';
 import ScorecardsList from './screens/ScorecardsList';
 import ContactList from './screens/ContactList';
+import SearchResults from './screens/SearchResults';
 
 
 const RouterComponent = () => {
@@ -60,6 +61,16 @@ const RouterComponent = () => {
           sceneStyle={sceneStyle}
           onLeft={() => Actions.courseList({ type: 'reset' })}
           leftTitle="Done"
+        />
+        <Scene
+          key="searchResults"
+          component={SearchResults}
+          title="Search Results"
+          onLeft={() => Actions.scorecardsList()}
+          leftTitle={<Ionicons name="md-menu" size={24} color="#000" />}
+          onRight={() => Actions.courseSearch()}
+          rightTitle={<MaterialIcons name="search" size={24} color="#000" />}
+          sceneStyle={sceneStyle}
         />
         <Scene
           key="courseDetails"

@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 // import { connect } from 'react-redux';
 // import { Actions } from 'react-native-router-flux';
 import { Card, CardSection, Input, Button, GrayButton } from '../components/common';
-import { SearchBar, Slider } from 'react-native-elements';
+import { Slider } from 'react-native-elements';
 
 
 class CourseSearch extends Component {
@@ -11,28 +11,35 @@ class CourseSearch extends Component {
     super(props);
 
     this.state = {
-      value: 10,
+      city: '',
+      state: ''
     };
   }
 
   render() {
     return(
       <Card style={{ flex: 1 }}>
-        <CardSection>
-          <Text style={styles.headerStyle}>Location</Text>
+        <CardSection style={{ paddingBottom: 0 }}>
+          <Text style={[styles.textStyle, { flex: 2}]}>City</Text>
+          <Text style={[styles.textStyle, { flex: 1, marginLeft: 6 }]}>State</Text>
         </CardSection>
 
-        <SearchBar
-          noIcon
-          containerStyle={{ backgroundColor: '#FFF', borderTopWidth: 0, borderBottomWidth: 0 }}
-          inputStyle={{ borderColor: 'rgb(76,217,100)', borderWidth: 1, backgroundColor: '#FFF', paddingTop: 12, paddingBottom: 12, height: 45 }}
-          onChangeText={(text) => this.setState({ searchTerm: text }) }
-          placeholder='Search by location'
-        />
+        <CardSection>
+          <Input
+            style={{ flex: 2}}
+            placeholder="Seattle"
+            onChangeText={(text) => this.setState({ city: text })}
+          />
+          <Input
+            style={{ flex: 1, marginLeft: 6}}
+            placeholder="WA"
+            onChangeText={(text) => this.setState({ state: text })}
+          />
+        </CardSection>
 
-      <CardSection style={styles.buttonPadding}>
+        <CardSection style={styles.buttonPadding}>
           <GrayButton onPress={() => console.log('cancel')}>CANCEL</GrayButton>
-          <Button style={styles.buttonMargin} onPress={() => console.log('apply')}>APPLY</Button>
+          <Button style={styles.buttonMargin} onPress={() => console.log('apply')}>SEARCH</Button>
         </CardSection>
       </Card>
     )
@@ -40,10 +47,6 @@ class CourseSearch extends Component {
 }
 
 const styles = {
-  headerStyle: {
-    fontSize: 21,
-    fontWeight: '600',
-  },
   textStyle: {
     fontSize: 18,
     color: 'rgba(0,0,0,0.75)'
@@ -52,7 +55,7 @@ const styles = {
     paddingTop: 60
   },
   buttonMargin: {
-    marginLeft: 9
+    marginLeft: 6
   }
 }
 

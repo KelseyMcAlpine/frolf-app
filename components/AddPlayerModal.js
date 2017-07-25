@@ -59,7 +59,7 @@ const styles = {
     paddingTop: 60
   },
   buttonMargin: {
-    marginLeft: 9
+    marginLeft: 6
   }
 };
 
