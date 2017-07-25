@@ -20,7 +20,7 @@ const Input = ({ label, value, onChangeText, placeholder, secureTextEntry }) => 
 const styles = {
   inputStyle: {
     flex: 1,
-    borderColor: '#6BD13D',
+    borderColor: 'rgb(76,217,100)',
     borderWidth: 1,
     backgroundColor: '#FFF',
     paddingTop: 12,
