@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Alert} from 'react-native';
 import { connect } from 'react-redux';
-import { CardSection, Button } from '../components/common';
+import { CardSection, Button, GrayButton } from '../components/common';
 import HoleForm from '../components/HoleForm';
 import { saveScorecard, saveScores, clearScores } from '../actions';
 
@@ -38,18 +38,11 @@ class GamePlay extends Component {
   }
 
   onIncrement(player, index) {
-    console.log('in on increment');
     const { scores, totalScores } = this.state;
-    console.log('before adding: scores, totalScores:', scores, totalScores);
-    console.log('index', index);
-    console.log('Scores[index] = ', typeof scores[index]);
-
-    console.log(scores[index] === totalScores[index] ? "They're the same" : "They're different");
 
     scores[index] += 1;
     totalScores[index] += 1;
 
-    console.log('after adding: scores, totalScores:', scores, totalScores);
     this.setState({ ...this.state, scores, totalScores });
   }
 
@@ -114,9 +107,22 @@ class GamePlay extends Component {
   }
 
   renderButton() {
-    const { currentHole } = this.state;
+    const { currentHole, scores } = this.state;
     const numOfHoles = (this.props.holeDetails.length) - 1;
-
+    if (scores.includes(0)) {
+      return (
+        <GrayButton onPress={() => Alert.alert(
+          'Please Enter a Score',
+          'Scores for all users must be entered before moving on to the next hole.',
+          [
+            {text: 'OK', onPress: () => console.log('OK Pressed')},
+          ],
+          { cancelable: false }
+        )}>
+          NEXT HOLE
+        </GrayButton>
+      )
+    }
     if (currentHole < numOfHoles) {
       return (
         <Button onPress={this.onPressNextHole.bind(this)}>
