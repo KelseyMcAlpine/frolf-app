@@ -19,7 +19,7 @@ class CourseSearch extends Component {
     return(
       <Card style={{ flex: 1 }}>
         <CardSection>
-          <Text>Location</Text>
+          <Text style={styles.headerStyle}>Location</Text>
         </CardSection>
 
         <SearchBar
@@ -30,9 +30,9 @@ class CourseSearch extends Component {
           placeholder='Search by location'
         />
 
-        <CardSection>
+      <CardSection style={styles.buttonPadding}>
           <GrayButton onPress={() => console.log('cancel')}>CANCEL</GrayButton>
-          <Button onPress={() => console.log('apply')}>APPLY</Button>
+          <Button style={styles.buttonMargin} onPress={() => console.log('apply')}>APPLY</Button>
         </CardSection>
       </Card>
     )
@@ -48,6 +48,12 @@ const styles = {
     fontSize: 18,
     color: 'rgba(0,0,0,0.75)'
   },
+  buttonPadding: {
+    paddingTop: 60
+  },
+  buttonMargin: {
+    marginLeft: 9
+  }
 }
 
 export default CourseSearch;
