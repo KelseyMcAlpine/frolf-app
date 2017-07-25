@@ -28,9 +28,13 @@ class ScorecardsList extends Component {
       return (
         <CardSection key={scorecard.uid}>
           <View>
-            <Text>{scorecard.details.courseId}</Text>
-            <Text>{scorecard.details.currentDate}</Text>
+            <Text>{scorecard.details.courseName}</Text>
+            <Text>{scorecard.details.city}</Text>
+            <Text>{scorecard.details.state}</Text>
+            <Text>{scorecard.details.date}</Text>
             <Text>{scorecard.details.holes}</Text>
+            <Text>{scorecard.details.players}</Text>
+            <Text>{scorecard.details.scores}</Text>
           </View>
         </CardSection>
       );
