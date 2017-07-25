@@ -24,9 +24,14 @@ class GamePlay extends Component {
       return defaultScore;
     });
 
+    const defaultScores = this.props.players.map(() => {
+      return 0;
+    });
+
     this.state = {
       currentHole: this.state.currentHole,
-      scores: scoresState
+      scores: scoresState,
+      totalScores: defaultScores
     };
   }
 
@@ -55,7 +60,14 @@ class GamePlay extends Component {
   onPressNextHole() {
     const { currentHole, scores } = this.state;
 
-    this.props.saveScores({ currentHole, scores });
+    this.props.saveScores({ currentHole, scores }, () => {
+      const updatedTotals = this.state.scores.map((score, index) => {
+        return this.state.totalScores[index] + score;
+      });
+
+      this.setState({ totalScores: updatedTotals })
+    });
+
     this.setDefaultScore();
   }
 
@@ -123,7 +135,7 @@ class GamePlay extends Component {
   render() {
     const { buttonPadding } = styles;
     const { holeDetails, players } = this.props;
-    const { currentHole, scores } = this.state;
+    const { currentHole, scores, totalScores } = this.state;
 
     return (
       <View>
@@ -132,6 +144,7 @@ class GamePlay extends Component {
           holeDetails={holeDetails}
           players={players}
           scores={scores}
+          totalScores={totalScores}
           onIncrementScore={this.onIncrement.bind(this)}
           onDecrementScore={this.onDecrement.bind(this)}
         />
