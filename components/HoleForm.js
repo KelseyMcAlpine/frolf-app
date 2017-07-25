@@ -12,18 +12,18 @@ class HoleForm extends Component {
       return (
         <View key={index} >
           <CardSection style={playerSection}>
-            <View style={{ flex: 1 }}>
+            <View style={{ flex: 1.5 }}>
               <Text style={textStyle}>{player}</Text>
             </View>
 
             <View style={scoringSection}>
-              <TouchableOpacity onPress={() => this.props.onDecrementScore(player, index)}>
-                <EvilIcons name="minus" size={45} color="rgba(0,0,0,0.5)" />
+              <TouchableOpacity style={{ flex: 1, alignItems: 'flex-end' }} onPress={() => this.props.onDecrementScore(player, index)}>
+                <EvilIcons name="minus" size={45} color="rgba(0,0,0,0.2)" />
               </TouchableOpacity>
 
-              <Text style={headerStyle}>{this.props.scores[index]}</Text>
+              <Text style={[headerStyle, { flex: 1, textAlign: 'center' }]}>{this.props.scores[index]}</Text>
 
-              <TouchableOpacity onPress={() => this.props.onIncrementScore(player, index)}>
+              <TouchableOpacity style={{ flex: 1, alignItems: 'flex-end' }} onPress={() => this.props.onIncrementScore(player, index)}>
                 <Entypo name="circle-with-plus" size={36} color="#6BD13D" />
               </TouchableOpacity>
             </View>
@@ -36,20 +36,20 @@ class HoleForm extends Component {
   render() {
     const currentHole = this.props.currentHole;
     const holeDetails = this.props.holeDetails;
-
+    const { label, alignRight, holeFact, holeNum } = styles;
     return (
         <Card>
           <CardSection style={{ justifyContent: 'space-between' }}>
             <View>
-              <Text>HOLE</Text>
-              <Text>{currentHole}</Text>
+              <Text style={label}>HOLE</Text>
+              <Text style={holeNum}>{currentHole}</Text>
             </View>
 
             <View style={{ justifyContent: 'flex-end' }}>
-              <Text>LENGTH</Text>
-              <Text>{holeDetails[currentHole].tee_1_len}</Text>
-              <Text>PAR</Text>
-              <Text>{holeDetails[currentHole].tee_1_par}</Text>
+              <Text style={[label, alignRight]}>LENGTH</Text>
+              <Text style={[holeFact, alignRight]}>{holeDetails[currentHole].tee_1_len}</Text>
+              <Text style={[label, alignRight]}>PAR</Text>
+              <Text style={[holeFact, alignRight]}>{holeDetails[currentHole].tee_1_par}</Text>
             </View>
           </CardSection>
 
@@ -60,6 +60,22 @@ class HoleForm extends Component {
 }
 
 const styles = {
+  label: {
+    color: 'rgba(0,0,0,0.5)'
+  },
+  alignRight: {
+    textAlign: 'right',
+  },
+  holeNum: {
+    color: '#6BD13D',
+    fontSize: 63,
+    fontWeight: '600'
+  },
+  holeFact: {
+    color: '#6BD13D',
+    fontSize: 24,
+    fontWeight: '800'
+  },
   playerSection: {
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -69,7 +85,7 @@ const styles = {
   headerStyle: {
     fontSize: 36,
     fontWeight: '400',
-    color: 'rgba(0,0,0,0.5)'
+    color: 'rgba(0,0,0,0.75)'
   },
   textStyle: {
     fontSize: 18,
