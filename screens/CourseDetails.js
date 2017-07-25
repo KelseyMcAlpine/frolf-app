@@ -98,14 +98,14 @@ class CourseDetails extends Component {
 
           <CardSection style={factSection}>
             <View style={iconSpacer}>
-              <FontAwesome name="map-marker" size={18} color="#6BD13D" />
+              <FontAwesome name="map-marker" size={18} color="rgb(76,217,100)" />
             </View>
             <Text>{city}, {state}</Text>
           </CardSection>
 
           <CardSection style={factSection}>
             <View style={iconSpacer}>
-              <FontAwesome name="dollar" size={18} color="#6BD13D" />
+              <FontAwesome name="dollar" size={18} color="rgb(76,217,100)" />
             </View>
             <Text>{this.displayPublicPrivate(privateStatus)}</Text>
           </CardSection>
@@ -113,14 +113,14 @@ class CourseDetails extends Component {
 
           <CardSection style={factSection}>
             <View style={iconSpacer}>
-              <FontAwesome name="hashtag" size={15} color="#6BD13D" />
+              <FontAwesome name="hashtag" size={15} color="rgb(76,217,100)" />
             </View>
             <Text>{holes} Holes</Text>
           </CardSection>
 
           <CardSection style={factSection}>
             <View style={iconSpacer}>
-              <FontAwesome name="car" size={15} color="#6BD13D" />
+              <FontAwesome name="car" size={15} color="rgb(76,217,100)" />
             </View>
             <Text>{this.props.courseDistance} from current location</Text>
           </CardSection>
@@ -136,7 +136,7 @@ class CourseDetails extends Component {
                   coordinate={marker.coordinate}
                   title={marker.title}
                   description={marker.description}
-                  pinColor='#6BD13D'
+                  pinColor='rgb(76,217,100)'
                 />
               </MapView>
             </View>
