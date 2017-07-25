@@ -39,7 +39,7 @@ export const createScorecardForm = ({ courseId }) => {
   };
 };
 
-export const saveScorecard = ({ scorecardInfo }) => {
+export const saveScorecard = ({ scorecardInfo }, callback) => {
   const { currentUser } = firebase.auth();
 
   return (dispatch) => {
@@ -49,9 +49,8 @@ export const saveScorecard = ({ scorecardInfo }) => {
           type: SCORECARD_SAVE_SUCCESS,
           payload: response.key
         });
-        Actions.scorecardsList({ type: 'reset' });
+        callback();
       });
     //
   };
-
 };
