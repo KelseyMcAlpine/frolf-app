@@ -1,27 +1,25 @@
 import React, { Component } from 'react';
-import { View, Dimensions } from 'react-native';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
-import { Card, CardSection, Button } from '../components/common';
+import { CardSection, Button } from '../components/common';
 import HoleForm from '../components/HoleForm';
 import { saveScorecard, saveScores } from '../actions';
 
-// TODO:
-// - Clear state if game is canceled/left
-// - Fix bug with saving hole #18
-// - Navigate away from page after saving
+// TODO: Clear state if game is canceled/left
 
 class GamePlay extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
+
     this.state = {
       currentHole: 1,
     };
 
-    const scoresState = this.props.players.map((player, index) => {
+    const scoresState = this.props.players.map(() => {
       const { holeDetails } = this.props;
       const { currentHole } = this.state;
-      const defaultScore = parseInt(holeDetails[currentHole].tee_1_par);
+      const defaultScore = parseInt(holeDetails[currentHole].tee_1_par, 10);
 
       return defaultScore;
     });
@@ -33,8 +31,11 @@ class GamePlay extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const lastHole = `hole_${this.props.holeDetails.length - 1}`;
-    if (nextProps.gameScores.hasOwnProperty(lastHole)) {
+    const lastHoleNum = this.props.holeDetails.length - 1;
+    const lastHole = `hole_${lastHoleNum}`;
+    const isLastHole = nextProps.gameScores.hasOwnProperty(lastHole);
+
+    if (isLastHole) {
       this.saveScorecard(nextProps);
     }
   }
@@ -51,11 +52,40 @@ class GamePlay extends Component {
     this.setState({ ...this.state, scores });
   }
 
+  onPressNextHole() {
+    const { currentHole, scores } = this.state;
+
+    this.props.saveScores({ currentHole, scores });
+    this.setDefaultScore();
+  }
+
+  setDefaultScore() {
+    const numOfHoles = (this.props.holeDetails.length) - 1;
+    const nextHole = this.state.currentHole + 1;
+    const { currentHole } = this.state;
+
+
+    const scoresState = this.props.players.map(() => {
+      const { holeDetails } = this.props;
+      const defaultScore = parseInt(holeDetails[currentHole].tee_1_par, 10);
+
+      return defaultScore;
+    });
+
+    if (currentHole < numOfHoles) {
+      this.setState({
+        currentHole: nextHole,
+        scores: scoresState
+      });
+    }
+  }
+
   saveScorecard(nextProps) {
     const date = new Date();
-    const currentDate = (date.getMonth()+1) + '/'
-                    + date.getDate() + '/'
-                    + date.getFullYear();
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    const currentDate = `${month}/${day}/${year}`;
 
     const scorecardInfo = {
       details: {
@@ -69,57 +99,41 @@ class GamePlay extends Component {
     this.props.saveScorecard({ scorecardInfo });
   }
 
-  onPressNextHole() {
-    const { currentHole, scores }  = this.state;
-    const numOfHoles = (this.props.holeDetails.length) - 1;
-
-    this.props.saveScores({ currentHole, scores });
-
-    const scoresState = this.props.players.map((player, index) => {
-      const { holeDetails } = this.props;
-      const { currentHole } = this.state;
-      const defaultScore = parseInt(holeDetails[currentHole].tee_1_par);
-
-      return defaultScore;
-    });
-
-    if ( currentHole < numOfHoles ) {
-      this.setState({
-        currentHole: this.state.currentHole + 1,
-        scores: scoresState
-      })
-    }
-  }
-
   renderButton() {
-    const { currentHole }  = this.state;
+    const { currentHole } = this.state;
     const numOfHoles = (this.props.holeDetails.length) - 1;
 
-    if ( currentHole < numOfHoles ) {
+    if (currentHole < numOfHoles) {
       return (
-        <Button onPress={this.onPressNextHole.bind(this)}>Next Hole</Button>
-      )
-    } else {
-      return (
-        <Button onPress={this.onPressNextHole.bind(this)}>Save Scorecard</Button>
-      )
+        <Button onPress={this.onPressNextHole.bind(this)}>
+          Next Hole
+        </Button>
+      );
     }
+    return (
+      <Button onPress={this.onPressNextHole.bind(this)}>
+        Save Scorecard
+      </Button>
+    );
   }
 
 
   render() {
+    const { buttonPadding } = styles;
+    const { holeDetails, players } = this.props;
+    const { currentHole, scores } = this.state;
+
     return (
-      <View style={{ backgroundColor: '#EEEEEE' }}>
+      <View>
         <HoleForm
-          currentHole={this.state.currentHole}
-          holeDetails={this.props.holeDetails}
-          players={this.props.players}
-          scores={this.state.scores}
-          onIncrementScore={this.onIncrement.bind(this) }
-          onDecrementScore={this.onDecrement.bind(this) }
-          style={styles.viewStyle}
+          currentHole={currentHole}
+          holeDetails={holeDetails}
+          players={players}
+          scores={scores}
+          onIncrementScore={this.onIncrement.bind(this)}
+          onDecrementScore={this.onDecrement.bind(this)}
         />
-      <CardSection style={{ paddingTop: 60 }}>
+        <CardSection style={buttonPadding}>
           {this.renderButton()}
         </CardSection>
       </View>
@@ -127,12 +141,10 @@ class GamePlay extends Component {
   }
 }
 
-const SCREEN_HEIGHT = Dimensions.get('window').height;
-
 const styles = {
-  viewStyle: {
-    height: Dimensions.get('window').height,
-  },
+  buttonPadding: {
+    paddingTop: 60
+  }
 };
 
 const mapStateToProps = state => {
