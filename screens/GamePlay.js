@@ -16,21 +16,13 @@ class GamePlay extends Component {
       currentHole: 1,
     };
 
-    const scoresState = this.props.players.map(() => {
-      const { holeDetails } = this.props;
-      const { currentHole } = this.state;
-      const defaultScore = parseInt(holeDetails[currentHole].tee_1_par, 10);
-
-      return defaultScore;
-    });
-
     const defaultScores = this.props.players.map(() => {
       return 0;
     });
 
     this.state = {
       currentHole: this.state.currentHole,
-      scores: scoresState,
+      scores: defaultScores,
       totalScores: defaultScores
     };
   }
@@ -47,15 +39,23 @@ class GamePlay extends Component {
 
   onIncrement(player, index) {
     const scores = this.state.scores;
+    const totalScores = this.state.totalScores;
+
     scores[index] += 1;
-    this.setState({ ...this.state, scores });
+    totalScores[index] += 1;
+
+    this.setState({ ...this.state, scores, totalScores });
   }
 
   onDecrement(player, index) {
     const scores = this.state.scores;
+    const totalScores = this.state.totalScores;
+
     if (scores[index] > 1) {
       scores[index] -= 1;
-      this.setState({ ...this.state, scores });
+      totalScores[index] -= 1;
+
+      this.setState({ ...this.state, scores, totalScores });
     };
   }
 
@@ -63,14 +63,8 @@ class GamePlay extends Component {
     const { currentHole, scores } = this.state;
 
     this.props.saveScores({ currentHole, scores }, () => {
-      const updatedTotals = this.state.scores.map((score, index) => {
-        return this.state.totalScores[index] + score;
-      });
-
-      this.setState({ totalScores: updatedTotals })
+      this.setDefaultScore();
     });
-
-    this.setDefaultScore();
   }
 
   setDefaultScore() {
@@ -79,16 +73,14 @@ class GamePlay extends Component {
     const { currentHole } = this.state;
     const { holeDetails } = this.props;
 
-    const scoresState = this.props.players.map(() => {
-      const defaultScore = parseInt(holeDetails[currentHole].tee_1_par, 10);
-
-      return defaultScore;
+    const defaultScores = this.props.players.map(() => {
+      return 0;
     });
 
     if (currentHole < numOfHoles) {
       this.setState({
         currentHole: nextHole,
-        scores: scoresState
+        scores: defaultScores
       });
     }
   }

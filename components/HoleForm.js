@@ -14,7 +14,7 @@ class HoleForm extends Component {
           <CardSection style={playerSection}>
             <View style={{ flex: 1.5 }}>
               <Text style={textStyle}>{player}</Text>
-              <Text style={label}>{this.props.totalScores[index]}</Text>
+              <Text style={label}>TOTAL {this.props.totalScores[index]}</Text>
             </View>
 
             <View style={scoringSection}>
