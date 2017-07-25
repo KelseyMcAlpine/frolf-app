@@ -25,7 +25,7 @@ class CourseSearch extends Component {
         <SearchBar
           noIcon
           containerStyle={{ backgroundColor: '#FFF', borderTopWidth: 0, borderBottomWidth: 0 }}
-          inputStyle={{ borderColor: '#6BD13D', borderWidth: 1, backgroundColor: '#FFF', paddingTop: 12, paddingBottom: 12, height: 45 }}
+          inputStyle={{ borderColor: 'rgb(76,217,100)', borderWidth: 1, backgroundColor: '#FFF', paddingTop: 12, paddingBottom: 12, height: 45 }}
           onChangeText={(text) => this.setState({ searchTerm: text }) }
           placeholder='Search by location'
         />
