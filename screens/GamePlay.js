@@ -53,8 +53,10 @@ class GamePlay extends Component {
 
   onDecrement(player, index) {
     const scores = this.state.scores;
-    scores[index] -= 1;
-    this.setState({ ...this.state, scores });
+    if (scores[index] > 1) {
+      scores[index] -= 1;
+      this.setState({ ...this.state, scores });
+    };
   }
 
   onPressNextHole() {
