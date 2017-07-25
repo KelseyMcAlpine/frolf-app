@@ -1,9 +1,10 @@
 import React from 'react';
 import { Text, KeyboardAvoidingView, Modal } from 'react-native';
-import { CardSection, Card, Button, GrayButton, Input } from './common';
+import { CardSection, Button, GrayButton, Input } from './common';
 
-const AddPlayerModal = ({ children, visible, onAccept, onDecline, onChangeText }) => {
-  const { containerStyle, textStyle, cardSectionStyle, headerStyle } = styles;
+const AddPlayerModal = ({ visible, onAccept, onDecline, onChangeText }) => {
+  const { containerStyle, textStyle, cardSectionStyle, headerStyle,
+          buttonPadding, buttonMargin } = styles;
 
   return (
     <Modal
@@ -28,9 +29,9 @@ const AddPlayerModal = ({ children, visible, onAccept, onDecline, onChangeText }
             />
           </CardSection>
 
-          <CardSection style={{ paddingTop: 60 }}>
+          <CardSection style={buttonPadding}>
             <GrayButton onPress={onDecline}>CANCEL</GrayButton>
-            <Button onPress={onAccept} style={{ marginLeft: 9 }}>ADD PLAYER</Button>
+            <Button onPress={onAccept} style={buttonMargin}>ADD PLAYER</Button>
           </CardSection>
       </KeyboardAvoidingView>
     </Modal>
@@ -49,18 +50,17 @@ const styles = {
   cardSectionStyle: {
     justifyContent: 'flex-start',
   },
-  textStyle: {
-    flex: 1,
-    fontSize: 18,
-    lineHeight: 40,
-  },
   containerStyle: {
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    // position: 'relative',
     flex: 1,
     justifyContent: 'flex-end',
-    // marginBottom: 200
   },
+  buttonPadding: {
+    paddingTop: 60
+  },
+  buttonMargin: {
+    marginLeft: 9
+  }
 };
 
 export { AddPlayerModal };

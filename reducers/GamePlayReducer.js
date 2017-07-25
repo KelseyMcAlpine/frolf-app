@@ -1,6 +1,4 @@
-import {
-  SAVE_SCORES_SUCCESS
-} from '../actions/types';
+import { SAVE_SCORES_SUCCESS } from '../actions/types';
 
 const INITIAL_STATE = {};
 
