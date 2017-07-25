@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Text, View, ScrollView, Image } from 'react-native';
-import { Button, GrayButton, Card, CardSection, Spinner, ImageSection, Rating } from '../components/common';
-import { courseDetailsFetch, createScorecardForm } from '../actions';
+import { Text, View, ScrollView } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { MapView, WebBrowser } from 'expo';
+import { createScorecardForm } from '../actions';
+import { Button, GrayButton, Card, CardSection,
+        Spinner, ImageSection, Rating } from '../components/common';
 
 class CourseDetails extends Component {
 
@@ -14,25 +15,25 @@ class CourseDetails extends Component {
     const { latitude, longitude, name } = this.props.courseDetails;
 
     this.state = {
-      mapLoaded: false,
+      mapLoading: true,
       region: {
-        longitude: parseInt(longitude),
-        latitude: parseInt(latitude),
+        longitude: parseInt(longitude, 10),
+        latitude: parseInt(latitude, 10),
         longitudeDelta: 0.04,
         latitudeDelta: 0.09
       },
       marker: {
         coordinate: {
-          longitude: parseInt(longitude),
-          latitude: parseInt(latitude),
+          longitude: parseInt(longitude, 10),
+          latitude: parseInt(latitude, 10),
         },
         title: name,
       }
-    }
+    };
   }
 
   componentDidMount() {
-    this.setState({ mapLoaded: true });
+    this.setState({ mapLoading: false });
   }
 
   onRegionChangeComplete = (region) => {
@@ -41,6 +42,7 @@ class CourseDetails extends Component {
 
   onGetDirections = () => {
     const { latitude, longitude } = this.props.courseDetails;
+
     WebBrowser.openBrowserAsync(`http://maps.apple.com/?daddr=${latitude},${longitude}`);
   }
 
@@ -62,36 +64,29 @@ class CourseDetails extends Component {
   }
 
   render() {
-    if (!this.state.mapLoaded) {
-      return (
-        <Spinner />
-      );
+    if (this.state.mapLoading) {
+      return <Spinner />;
     }
 
     const { name, holes, rating, city, state } = this.props.courseDetails;
     const privateStatus = this.props.courseDetails.private;
+    const { region, marker } = this.state;
+    const { titleSection, titleStyle, descriptionSection,
+            factSection, iconSpacer, mapCard, mapContainer, map,
+            buttonSection, buttonPadding
+            } = styles;
 
     return (
       <ScrollView>
         <Card>
           <ImageSection imageURL={this.constructImageUrl()} />
 
-          <CardSection style={{
-            justifyContent: 'space-between',
-            alignItems: 'baseline',
-            borderBottomWidth: 1,
-            borderColor: '#ddd',
-          }}>
-            <Text style={styles.titleStyle}>{name}</Text>
+          <CardSection style={titleSection}>
+            <Text style={titleStyle}>{name}</Text>
             <Rating rating={rating} />
           </CardSection>
 
-          <CardSection style={{
-            borderBottomWidth: 1,
-            borderColor: '#ddd',
-            paddingTop: 15,
-            paddingBottom: 15,
-          }}>
+          <CardSection style={descriptionSection}>
             <Text>
               Decription placeholder text Located west of Rochester
               N.Y. in the town of Riga. It is an 18 hole course with the
@@ -101,57 +96,57 @@ class CourseDetails extends Component {
             </Text>
           </CardSection>
 
-          <CardSection style={{ borderBottomWidth: 1, borderColor: '#ddd', alignItems: 'center'}}>
-            <View style={{ width: 30 }}>
+          <CardSection style={factSection}>
+            <View style={iconSpacer}>
               <FontAwesome name="map-marker" size={18} color="#6BD13D" />
             </View>
             <Text>{city}, {state}</Text>
           </CardSection>
 
-          <CardSection style={{ borderBottomWidth: 1, borderColor: '#ddd', alignItems: 'center'}}>
-            <View style={{ width: 30 }}>
+          <CardSection style={factSection}>
+            <View style={iconSpacer}>
               <FontAwesome name="dollar" size={18} color="#6BD13D" />
             </View>
             <Text>{this.displayPublicPrivate(privateStatus)}</Text>
           </CardSection>
 
 
-          <CardSection style={{ borderBottomWidth: 1, borderColor: '#ddd', alignItems: 'center'}}>
-            <View style={{ width: 30 }}>
+          <CardSection style={factSection}>
+            <View style={iconSpacer}>
               <FontAwesome name="hashtag" size={15} color="#6BD13D" />
             </View>
             <Text>{holes} Holes</Text>
           </CardSection>
 
-          <CardSection style={{ borderBottomWidth: 1, borderColor: '#ddd', alignItems: 'center'}}>
-            <View style={{ width: 30 }}>
+          <CardSection style={factSection}>
+            <View style={iconSpacer}>
               <FontAwesome name="car" size={15} color="#6BD13D" />
             </View>
             <Text>{this.props.courseDistance} from current location</Text>
           </CardSection>
 
-          <CardSection style={styles.mapCard}>
-            <View style={styles.mapContainer}>
+          <CardSection style={mapCard}>
+            <View style={mapContainer}>
               <MapView
-                region={this.state.region}
-                style={styles.map}
+                region={region}
+                style={map}
                 onRegionChangeComplete={this.onRegionChangeComplete}
               >
                 <MapView.Marker
-                  coordinate={this.state.marker.coordinate}
-                  title={this.state.marker.title}
-                  description={this.state.marker.description}
+                  coordinate={marker.coordinate}
+                  title={marker.title}
+                  description={marker.description}
                   pinColor='#6BD13D'
                 />
               </MapView>
             </View>
           </CardSection>
 
-          <CardSection style={{ borderTopWidth: 1, borderColor: '#ddd', paddingBottom: 0 }}>
+          <CardSection style={buttonSection}>
             <GrayButton onPress={this.onGetDirections}>GET DIRECTIONS</GrayButton>
           </CardSection>
 
-          <CardSection style={{ paddingTop: 9 }}>
+          <CardSection style={buttonPadding}>
             <Button onPress={this.onPressStart.bind(this)}>NEW SCORECARD</Button>
           </CardSection>
         </Card>
@@ -164,10 +159,38 @@ const styles = {
   titleStyle: {
     fontSize: 18,
   },
+  titleSection: {
+    justifyContent: 'space-between',
+    alignItems: 'baseline',
+    borderBottomWidth: 1,
+    borderColor: '#ddd',
+  },
+  descriptionSection: {
+    borderBottomWidth: 1,
+    borderColor: '#ddd',
+    paddingTop: 15,
+    paddingBottom: 15,
+  },
+  factSection: {
+    borderBottomWidth: 1,
+    borderColor: '#ddd',
+    alignItems: 'center'
+  },
+  buttonSection: {
+    borderTopWidth: 1,
+    borderColor: '#ddd',
+    paddingBottom: 0
+  },
   imageStyle: {
     height: 250,
     flex: 1,
     width: null,
+  },
+  iconSpacer: {
+    width: 30
+  },
+  buttonPadding: {
+    paddingTop: 9
   },
   mapCard: {
     height: 200
