@@ -1,4 +1,5 @@
-import { SAVE_SCORES_SUCCESS } from './types';
+import { SAVE_SCORES_SUCCESS, CLEAR_SCORES_SUCCESS } from './types';
+import { Actions } from 'react-native-router-flux';
 
 export const saveScores = ({ currentHole, scores }) => {
   return {
@@ -8,4 +9,9 @@ export const saveScores = ({ currentHole, scores }) => {
       scores
     }
   };
+};
+
+export const clearScores = () => {
+  Actions.scorecardsList({ type: 'reset' });
+  return { type: CLEAR_SCORES_SUCCESS }
 };
