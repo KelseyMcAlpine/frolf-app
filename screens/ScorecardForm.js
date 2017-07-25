@@ -89,7 +89,7 @@ class ScorecardForm extends Component {
               <MaterialIcons
                 name="person-add"
                 size={24}
-                color="#6BD13D"
+                color="rgb(76,217,100)"
               />
             </TouchableOpacity>
           </CardSection>
