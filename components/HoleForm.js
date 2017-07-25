@@ -25,7 +25,7 @@ class HoleForm extends Component {
               <Text style={[headerStyle, { flex: 1, textAlign: 'center' }]}>{this.props.scores[index]}</Text>
 
               <TouchableOpacity style={{ flex: 1, alignItems: 'flex-end' }} onPress={() => this.props.onIncrementScore(player, index)}>
-                <Entypo name="circle-with-plus" size={36} color="#6BD13D" />
+                <Entypo name="circle-with-plus" size={36} color="rgb(76,217,100)" />
               </TouchableOpacity>
             </View>
           </CardSection>
@@ -68,12 +68,12 @@ const styles = {
     textAlign: 'right',
   },
   holeNum: {
-    color: '#6BD13D',
+    color: 'rgb(76,217,100)',
     fontSize: 63,
     fontWeight: '600'
   },
   holeFact: {
-    color: '#6BD13D',
+    color: 'rgb(76,217,100)',
     fontSize: 24,
     fontWeight: '800'
   },
