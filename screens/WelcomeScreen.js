@@ -4,10 +4,10 @@ import { AsyncStorage } from 'react-native';
 import Slides from '../components/Slides';
 
 const SLIDE_DATA = [
-  { text: 'Search for Courses', color: '#6BD13D' },
-  { text: 'Create Scorecards', color: '#6BD13D' },
-  { text: 'Track Your Progress', color: '#6BD13D' },
-  { text: 'Get Sarted', color: '#6BD13D' }
+  { text: 'Search for Courses', color: 'rgb(76,217,100)' },
+  { text: 'Create Scorecards', color: 'rgb(76,217,100)' },
+  { text: 'Track Your Progress', color: 'rgb(76,217,100)' },
+  { text: 'Get Sarted', color: 'rgb(76,217,100)' }
 ];
 
 class WelcomeScreen extends Component {
