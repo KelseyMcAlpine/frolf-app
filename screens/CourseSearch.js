@@ -34,6 +34,7 @@ class CourseSearch extends Component {
           <Input
             style={{ flex: 1, marginLeft: 6}}
             placeholder="WA"
+            autoCapitalize={'characters'}
             onChangeText={(text) => this.setState({ state: text })}
           />
         </CardSection>
