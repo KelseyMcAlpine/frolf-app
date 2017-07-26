@@ -1,24 +1,28 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { AsyncStorage } from 'react-native';
+import { AsyncStorage, Text, View, Dimensions } from 'react-native';
 import Slides from '../components/Slides';
 
 const SLIDE_DATA = [
   {
-    text: 'Search for Courses',
+    heading: 'Search for Courses',
     color: 'rgb(76,217,100)',
+    imageURL: require('../images/map2.png')
   },
   {
-    text: 'Create Scorecards',
+    heading: 'Create Scorecards',
     color: 'rgb(76,217,100)',
+    imageURL: require('../images/scorecard2.png')
   },
   {
-    text: 'Track Your Progress',
+    heading: 'Track Your Progress',
     color: 'rgb(76,217,100)',
+    imageURL: require('../images/basket2.png')
   },
   {
-    text: 'Get Sarted',
+    heading: 'Get Sarted',
     color: 'rgb(76,217,100)',
+    imageURL: require('../images/frisbee2.png')
   }
 ];
 
@@ -43,9 +47,31 @@ class WelcomeScreen extends Component {
 
   render() {
     return (
-      <Slides data={SLIDE_DATA} onComplete={this.onSlidesComplete} />
+      <View style={styles.containter}>
+        <Text style={styles.logo}>frolf</Text>
+        <Slides data={SLIDE_DATA} onComplete={this.onSlidesComplete} />
+      </View>
     );
   }
 }
+
+const SCREEN_WIDTH = Dimensions.get('window').width;
+
+const styles = {
+  containter: {
+    flex: 1,
+    justifyContent: 'center',
+    alignContent: 'center',
+    width: SCREEN_WIDTH,
+    backgroundColor: 'rgb(76,217,100)'
+  },
+  logo: {
+    color: 'white',
+    paddingTop: 66,
+    fontSize: 60,
+    fontWeight: '800',
+    textAlign: 'center'
+  }
+};
 
 export default WelcomeScreen;

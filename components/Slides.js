@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView, Dimensions, Button, Image } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
@@ -18,17 +19,17 @@ class Slides extends Component {
   }
 
   renderSlides() {
-    const { slideStyle, slideText, imageStyles, containerStyle } = styles;
+    const { slideStyle, slideHeading, iconContainer, imageStyle } = styles;
     return this.props.data.map((slide, index) => {
       return (
         <View
           key={slide.text}
           style={[slideStyle, { backgroundColor: slide.color }]}
         >
-          <View style={containerStyle}>
-            <Image source={require('../assets/images/scorecard.png')} />
+          <View style={iconContainer}>
+            <Image source={slide.imageURL} style={imageStyle} />
           </View>
-          <Text style={slideText}>{slide.text}</Text>
+          <Text style={slideHeading}>{slide.heading}</Text>
           {this.renderLastSlide(index)}
         </View>
       );
@@ -56,11 +57,12 @@ class Slides extends Component {
 const styles = {
   slideStyle: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
+    marginTop: 36,
     alignItems: 'center',
     width: SCREEN_WIDTH,
   },
-  slideText: {
+  slideHeading: {
     color: 'white',
     fontSize: 30,
     textAlign: 'center',
@@ -69,18 +71,19 @@ const styles = {
     backgroundColor: '#0288D1',
     marginTop: 15,
   },
-  containerStyle: {
-    // justifyContent: 'flex-start',
-    // flexDirection: 'row',
-    // position: 'relative',
-    height: 50,
-    width: 50
+  iconContainer: {
+    marginBottom: 36,
+    // backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    borderRadius: 500,
+    height: 250,
+    width: 250,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
-  imageStyles: {
+  imageStyle: {
     flex: 1,
-    width: null,
-    height: null,
-    resizeMode: 'contain'
+    width: 250,
+    height: 250
   }
 };
 
