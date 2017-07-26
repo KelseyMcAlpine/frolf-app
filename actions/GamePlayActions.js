@@ -11,10 +11,10 @@ export const saveScores = ({ currentHole, scores }, callback) => {
       }
     });
     callback();
-  }
+  };
 };
 
 export const clearScores = () => {
-  Actions.scorecardsList({ type: 'reset' });
-  return { type: CLEAR_SCORES_SUCCESS }
+  Actions.courseList({ type: 'reset' });
+  return { type: CLEAR_SCORES_SUCCESS };
 };

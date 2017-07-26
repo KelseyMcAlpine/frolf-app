@@ -24,19 +24,18 @@ class ScorecardsList extends Component {
   }
 
   renderScorecards() {
+    const { label, holeFact, textStyle } = styles;
     return this.props.scorecards.map(scorecard => {
       return (
-        <CardSection key={scorecard.uid}>
-          <View>
-            <Text>{scorecard.details.courseName}</Text>
-            <Text>{scorecard.details.city}</Text>
-            <Text>{scorecard.details.state}</Text>
-            <Text>{scorecard.details.date}</Text>
-            <Text>{scorecard.details.holes}</Text>
-            <Text>{scorecard.details.players}</Text>
-            <Text>{scorecard.details.scores}</Text>
-          </View>
-        </CardSection>
+        <Card key={scorecard.uid}>
+          <CardSection>
+            <View>
+              <Text style={label}>{scorecard.details.date}</Text>
+              <Text style={holeFact}>{scorecard.details.courseName}</Text>
+              <Text style={textStyle}>{scorecard.details.city}, {scorecard.details.state}</Text>
+            </View>
+          </CardSection>
+        </Card>
       );
     });
   }
@@ -48,13 +47,28 @@ class ScorecardsList extends Component {
 
     return (
       <ScrollView>
-        <Card>
-          {this.renderScorecards()}
-        </Card>
+        {this.renderScorecards()}
       </ScrollView>
     );
   }
 }
+
+const styles = {
+  label: {
+    color: 'rgba(0,0,0,0.5)'
+  },
+  holeFact: {
+    color: 'rgb(76,217,100)',
+    fontSize: 18,
+    fontWeight: '800',
+    marginTop: 12
+  },
+  textStyle: {
+    fontSize: 18,
+    color: 'rgba(0,0,0,0.75)'
+  },
+};
+
 
 const mapStateToProps = (state) => {
   const scorecards = _.map(state.scorecardsList.history, (val, uid) => {

@@ -3,6 +3,7 @@ import { ScrollView, Alert} from 'react-native';
 import { connect } from 'react-redux';
 import { CardSection, Button, GrayButton } from '../components/common';
 import HoleForm from '../components/HoleForm';
+import GameSummaryModal from '../components/GameSummaryModal';
 import { saveScorecard, saveScores, clearScores } from '../actions';
 
 // TODO: Clear state if game is canceled/left
@@ -23,7 +24,8 @@ class GamePlay extends Component {
     this.state = {
       currentHole: 1,
       scores: defaultScores,
-      totalScores: defaultTotalScores
+      totalScores: defaultTotalScores,
+      showModal: false,
     };
   }
 
@@ -33,7 +35,8 @@ class GamePlay extends Component {
     const isLastHole = nextProps.gameScores.hasOwnProperty(lastHole);
 
     if (isLastHole) {
-      this.saveScorecard(nextProps);
+      this.setState({ showModal: true, gameScores: nextProps.gameScores });
+      // this.saveScorecard(nextProps);
     }
   }
 
@@ -84,7 +87,7 @@ class GamePlay extends Component {
     }
   }
 
-  saveScorecard(nextProps) {
+  saveScorecard() {
     const date = new Date();
     const day = date.getDate();
     const month = date.getMonth() + 1;
@@ -101,7 +104,8 @@ class GamePlay extends Component {
         date: currentDate
       },
       players: this.props.players,
-      scores: nextProps.gameScores
+      scores: this.props.gameScores,
+      totalScores: this.state.totalScores
     };
     this.props.saveScorecard({ scorecardInfo }, () => this.props.clearScores());
   }
@@ -157,6 +161,13 @@ class GamePlay extends Component {
         <CardSection style={buttonPadding}>
           {this.renderButton()}
         </CardSection>
+
+        <GameSummaryModal
+          visible={this.state.showModal}
+          onAccept={() => this.saveScorecard()}
+          players={this.props.players}
+          totalScores={this.state.totalScores}
+        />
       </ScrollView>
     );
   }
