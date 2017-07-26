@@ -58,7 +58,7 @@ const styles = {
   slideStyle: {
     flex: 1,
     justifyContent: 'flex-start',
-    marginTop: 36,
+    marginTop: 60,
     alignItems: 'center',
     width: SCREEN_WIDTH,
   },
