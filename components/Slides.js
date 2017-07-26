@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, Dimensions, Button } from 'react-native';
+import { View, Text, ScrollView, Dimensions, Button, Image } from 'react-native';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
@@ -18,13 +18,16 @@ class Slides extends Component {
   }
 
   renderSlides() {
-    const { slideStyle, slideText } = styles;
+    const { slideStyle, slideText, imageStyles, containerStyle } = styles;
     return this.props.data.map((slide, index) => {
       return (
         <View
           key={slide.text}
           style={[slideStyle, { backgroundColor: slide.color }]}
         >
+          <View style={containerStyle}>
+            <Image source={require('../assets/images/scorecard.png')} />
+          </View>
           <Text style={slideText}>{slide.text}</Text>
           {this.renderLastSlide(index)}
         </View>
@@ -38,7 +41,10 @@ class Slides extends Component {
         horizontal
         style={{ flex: 1 }}
         pagingEnabled
-        showsHorizontalScrollIndicator
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        bounces={false}
+        scrollsToTop={false}
         indicatorStyle='white'
       >
         {this.renderSlides()}
@@ -63,6 +69,19 @@ const styles = {
     backgroundColor: '#0288D1',
     marginTop: 15,
   },
+  containerStyle: {
+    // justifyContent: 'flex-start',
+    // flexDirection: 'row',
+    // position: 'relative',
+    height: 50,
+    width: 50
+  },
+  imageStyles: {
+    flex: 1,
+    width: null,
+    height: null,
+    resizeMode: 'contain'
+  }
 };
 
 export default Slides;
