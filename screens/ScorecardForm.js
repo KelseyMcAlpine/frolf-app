@@ -83,7 +83,7 @@ class ScorecardForm extends Component {
     // <TouchableOpacity onPress={() => Actions.contactList() } >
     return (
       <ScrollView>
-        <Card style={{ height: 600 }}>
+        <Card>
           <CardSection style={iconAndText}>
             <Text style={headerStyle}>Players</Text>
             <TouchableOpacity onPress={() => this.setState({ showModal: !this.state.showModal })} >
