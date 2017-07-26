@@ -10,7 +10,7 @@ class HoleForm extends Component {
 
     return this.props.players.map((player, index) => {
       return (
-        <View key={index} >
+        <View key={index}>
           <CardSection style={playerSection}>
             <View style={{ flex: 1.5 }}>
               <Text style={textStyle}>{player}</Text>
@@ -39,7 +39,7 @@ class HoleForm extends Component {
     const holeDetails = this.props.holeDetails;
     const { label, alignRight, holeFact, holeNum } = styles;
     return (
-        <Card>
+        <Card style={{ minHeight: 360 }}>
           <CardSection style={{ justifyContent: 'space-between' }}>
             <View>
               <Text style={label}>HOLE</Text>
