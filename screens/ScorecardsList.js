@@ -25,7 +25,15 @@ class ScorecardsList extends Component {
 
   renderScorecards() {
     const { label, holeFact, textStyle } = styles;
-    return this.props.scorecards.map(scorecard => {
+
+    const sortedScorecards = this.props.scorecards.sort((a, b) => {
+      if (a.details.date > b.details.date) {
+        return -1;
+      }
+      return 0;
+    });
+
+    return sortedScorecards.map(scorecard => {
       return (
         <Card key={scorecard.uid}>
           <CardSection>
