@@ -75,15 +75,15 @@ const styles = {
     marginBottom: 36,
     // backgroundColor: 'rgba(255, 255, 255, 0.2)',
     borderRadius: 500,
-    height: 250,
-    width: 250,
+    height: 200,
+    width: 200,
     alignItems: 'center',
     justifyContent: 'center'
   },
   imageStyle: {
     flex: 1,
-    width: 250,
-    height: 250
+    width: 200,
+    height: 200
   }
 };
 
