@@ -26,6 +26,9 @@ class App extends Component {
       messagingSenderId: FIREBASE_SENDER_ID
     };
     firebase.initializeApp(config);
+
+    //to hide yellow error messages
+    console.disableYellowBox = true;
   }
 
   render() {
