@@ -23,7 +23,7 @@ class Slides extends Component {
     return this.props.data.map((slide, index) => {
       return (
         <View
-          key={slide.text}
+          key={slide.heading}
           style={[slideStyle, { backgroundColor: slide.color }]}
         >
           <View style={iconContainer}>
