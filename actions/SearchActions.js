@@ -47,7 +47,7 @@ export const searchCourses = (city, state, userLat, userLon, callback) => async 
           latitude: course.latitude,
           longitude: course.longitude,
           rating: course.rating,
-          image: dgc_image.data.course_photo_url_medium,
+          imageURL: dgc_image.data.course_photo_url_medium,
           distance: google_distance.data.rows[0].elements[0].distance.text
         }
       })
