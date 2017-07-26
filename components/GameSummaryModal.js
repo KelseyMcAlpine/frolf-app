@@ -27,7 +27,7 @@ class GameSummaryModal extends Component {
       return (
         <CardSection style={styles.scoreSection} key={playerObject.player}>
           <Text style={styles.textStyle}>{playerObject.player}</Text>
-          <Text style={[styles.textStyle, { fontWeight: '600' }]}>{playerObject.score}</Text>
+          <Text style={[styles.textStyle, { fontWeight: '800' }]}>{playerObject.score}</Text>
         </CardSection>
       );
     });
