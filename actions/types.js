@@ -12,3 +12,5 @@ export const SAVE_SCORES_SUCCESS = 'save_scores_success';
 export const CLEAR_SCORES_SUCCESS = 'clear_scores_success';
 
 export const SCORECARDS_FETCH_SUCCESS = 'scorecards_fetch_success';
+
+export const SEARCH_FETCH_SUCCESS = 'search_success';

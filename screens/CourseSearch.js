@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
-// import { connect } from 'react-redux';
-// import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
+import { searchCourses } from '../actions';
+import { Actions } from 'react-native-router-flux';
 import { Card, CardSection, Input, Button, GrayButton } from '../components/common';
 import { Slider } from 'react-native-elements';
 
@@ -38,8 +39,8 @@ class CourseSearch extends Component {
         </CardSection>
 
         <CardSection style={styles.buttonPadding}>
-          <GrayButton onPress={() => console.log('cancel')}>CANCEL</GrayButton>
-          <Button style={styles.buttonMargin} onPress={() => console.log('apply')}>SEARCH</Button>
+          <GrayButton onPress={() => Actions.courseList()}>CANCEL</GrayButton>
+          <Button style={styles.buttonMargin} onPress={() => this.props.searchCourses(this.state.city, this.state.state, 43.0001, -77.6109, () => Actions.searchResults({ type: 'reset' }) )}>SEARCH</Button>
         </CardSection>
       </Card>
     )
@@ -59,4 +60,4 @@ const styles = {
   }
 }
 
-export default CourseSearch;
+export default connect(null, { searchCourses })(CourseSearch);
