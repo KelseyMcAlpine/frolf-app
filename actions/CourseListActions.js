@@ -71,7 +71,6 @@ export const courseListFetch = (userLat, userLon) => async (dispatch) => {
 
 export const courseDetailsFetch = (courseId, distance, callback) => async (dispatch) => {
   try {
-<<<<<<< HEAD
     let { data } = await axios.get('https://www.dgcoursereview.com/api_test/index.php', {
       params: {
         key: DG_API_KEY,
@@ -80,15 +79,11 @@ export const courseDetailsFetch = (courseId, distance, callback) => async (dispa
         sig: DG_COURSE_DETAILS_SIG
       }
     });
-    dispatch({ type: COURSE_DETAILS_FETCH_SUCCESS, payload: data });
-=======
-    let { data } = await axios.get('https://api.myjson.com/bins/ny42n');
     dispatch({ type: COURSE_DETAILS_FETCH_SUCCESS, payload: {
         courseDetails: data,
         distance
       }
     });
->>>>>>> 5589c3ad8c19b8a7925e7812a6c3e9544e6e4d27
     callback();
   } catch(e) {
     console.error(e);
