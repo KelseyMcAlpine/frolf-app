@@ -20,7 +20,7 @@ const SLIDE_DATA = [
     imageURL: require('../images/basket2.png')
   },
   {
-    heading: 'Get Sarted',
+    heading: 'Get Started',
     color: 'rgb(76,217,100)',
     imageURL: require('../images/frisbee2.png')
   }

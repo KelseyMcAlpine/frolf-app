@@ -52,7 +52,7 @@ class GameSummaryModal extends Component {
 
             <CardSection style={buttonSection}>
               <Button onPress={onAccept} style={{ borderColor: 'white', borderWidth: 2 }}>
-                CLOSE
+                SAVE SCORECARD
               </Button>
             </CardSection>
           </Card>
