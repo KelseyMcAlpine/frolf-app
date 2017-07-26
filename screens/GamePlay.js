@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Alert} from 'react-native';
+import { ScrollView, Alert} from 'react-native';
 import { connect } from 'react-redux';
 import { CardSection, Button, GrayButton } from '../components/common';
 import HoleForm from '../components/HoleForm';
@@ -144,7 +144,7 @@ class GamePlay extends Component {
     const { currentHole, scores, totalScores } = this.state;
 
     return (
-      <View>
+      <ScrollView>
         <HoleForm
           currentHole={currentHole}
           holeDetails={holeDetails}
@@ -157,7 +157,7 @@ class GamePlay extends Component {
         <CardSection style={buttonPadding}>
           {this.renderButton()}
         </CardSection>
-      </View>
+      </ScrollView>
     );
   }
 }
