@@ -19,8 +19,8 @@ class CourseDetails extends Component {
       region: {
         longitude: parseInt(longitude, 10),
         latitude: parseInt(latitude, 10),
-        longitudeDelta: 0.04,
-        latitudeDelta: 0.09
+        longitudeDelta: 0.31,
+        latitudeDelta: 0.21
       },
       marker: {
         coordinate: {
@@ -37,6 +37,7 @@ class CourseDetails extends Component {
   }
 
   onRegionChangeComplete = (region) => {
+    console.log(region);
     this.setState({ region });
   }
 
