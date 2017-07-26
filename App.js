@@ -26,14 +26,16 @@ class App extends Component {
       messagingSenderId: FIREBASE_SENDER_ID
     };
     firebase.initializeApp(config);
+
+    //to hide yellow error messages
+    console.disableYellowBox = true;
   }
 
   render() {
     const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
     return (
-      <Provider store={store} style={{backgroundColor: '#EEEEEE'}}>
+      <Provider store={store}>
         <Router />
-
       </Provider>
     );
   }

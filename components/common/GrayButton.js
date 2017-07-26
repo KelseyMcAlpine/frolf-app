@@ -5,11 +5,11 @@ import { Text, TouchableOpacity } from 'react-native';
 // onPress optional prop will call a callback function
 // when pressed (from album details) could have been called whatever!
 // typically called onPress but wanted to see distinction
-const GrayButton = ({ onPress, children }) => {
+const GrayButton = ({ onPress, children, style }) => {
   const { buttonStyle, TextStyle } = styles;
 
   return (
-    <TouchableOpacity onPress={onPress} style={buttonStyle}>
+    <TouchableOpacity onPress={onPress} style={[buttonStyle, style]}>
       <Text style={TextStyle}>
         {children}
       </Text>

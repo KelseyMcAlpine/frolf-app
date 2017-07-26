@@ -1,12 +1,16 @@
 import React from 'react';
-import { Scene, Router } from 'react-native-router-flux';
+import { MaterialIcons, Ionicons } from '@expo/vector-icons';
+import { Scene, Router, Actions } from 'react-native-router-flux';
 import FacebookLoginForm from './screens/FacebookLoginForm';
 import CourseList from './screens/CourseList';
 import CourseDetails from './screens/CourseDetails';
 import ScorecardForm from './screens/ScorecardForm';
 import GamePlay from './screens/GamePlay';
 import WelcomeScreen from './screens/WelcomeScreen';
-import { MaterialIcons } from '@expo/vector-icons';
+import CourseSearch from './screens/CourseSearch';
+import ScorecardsList from './screens/ScorecardsList';
+import ContactList from './screens/ContactList';
+import SearchResults from './screens/SearchResults';
 
 
 const RouterComponent = () => {
@@ -15,13 +19,13 @@ const RouterComponent = () => {
     <Router>
       <Scene
         key="auth"
-        hideNavBar={true}
+        hideNavBar
       >
         <Scene
           initial
           key="welcome"
           component={WelcomeScreen}
-          hideNavBar={true}
+          hideNavBar
         />
         <Scene
           key="facebookLogin"
@@ -38,9 +42,33 @@ const RouterComponent = () => {
           key="courseList"
           component={CourseList}
           title="Nearby Courses"
-          onLeft={() => alert("left button")}
-          leftTitle={<MaterialIcons name="sort" size={24} color="#000" />}
-          onRight={() => alert("right button")}
+          onLeft={() => Actions.scorecardsList()}
+          leftTitle={<Ionicons name="md-menu" size={24} color="#000" />}
+          onRight={() => Actions.courseSearch()}
+          rightTitle={<MaterialIcons name="search" size={24} color="#000" />}
+          sceneStyle={sceneStyle}
+        />
+        <Scene
+          key="courseSearch"
+          component={CourseSearch}
+          title="Find Courses"
+          sceneStyle={sceneStyle}
+        />
+        <Scene
+          key="scorecardsList"
+          component={ScorecardsList}
+          title="Scorecard History"
+          sceneStyle={sceneStyle}
+          onLeft={() => Actions.courseList()}
+          leftTitle="Done"
+        />
+        <Scene
+          key="searchResults"
+          component={SearchResults}
+          title="Search Results"
+          onLeft={() => Actions.scorecardsList()}
+          leftTitle={<Ionicons name="md-menu" size={24} color="#000" />}
+          onRight={() => Actions.courseSearch()}
           rightTitle={<MaterialIcons name="search" size={24} color="#000" />}
           sceneStyle={sceneStyle}
         />
@@ -57,6 +85,12 @@ const RouterComponent = () => {
           sceneStyle={sceneStyle}
         />
         <Scene
+          key="contactList"
+          component={ContactList}
+          title="Contact List"
+          sceneStyle={sceneStyle}
+        />
+        <Scene
           key="gamePlay"
           component={GamePlay}
           title="Game"
@@ -69,11 +103,14 @@ const RouterComponent = () => {
 
 const styles = {
   sceneStyle: {
-    paddingTop: 63,
+    paddingTop: 80,
     backgroundColor: '#EEEEEE'
   },
   navStyle: {
     backgroundColor: '#fff',
+    borderBottomWidth: 0,
+    paddingTop: 10,
+    height: 80
   }
 };
 

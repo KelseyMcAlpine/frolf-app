@@ -12,21 +12,21 @@ const Rating = ({ rating }) => {
 
   for (let i = 0; i < wholeStars; i++) {
     displayRating.push(
-      <FontAwesome name="star" size={15} color="#6BD13D" key={starNum} />
+      <FontAwesome name="star" size={15} color="rgb(76,217,100)" key={starNum} />
     );
     starNum += 1;
   }
 
   for (let i = 0; i < halfStars; i++) {
     displayRating.push(
-      <FontAwesome name="star-half-full" size={15} color="#6BD13D" key={starNum} />
+      <FontAwesome name="star-half-full" size={15} color="rgb(76,217,100)" key={starNum} />
     );
     starNum += 1;
   }
 
   for (let i = 0; i < emptyStars; i++) {
     displayRating.push(
-      <FontAwesome name="star-o" size={15} color="#6BD13D" key={starNum} />
+      <FontAwesome name="star-o" size={15} color="rgb(76,217,100)" key={starNum} />
     );
     starNum += 1;
   }

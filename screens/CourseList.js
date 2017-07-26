@@ -1,13 +1,20 @@
 // import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ScrollView, Text, ActivityIndicator } from 'react-native';
+import { ScrollView } from 'react-native';
 import { courseListFetch, getUserInfo, courseImagesFetch } from '../actions';
+import { Spinner } from '../components/common';
 import CourseListItem from '../components/CourseListItem';
 
 class CourseList extends Component {
 
-  state = { coursesloading: true };
+  constructor() {
+    super();
+
+    this.state = {
+      coursesLoading: true,
+    };
+  }
 
   componentWillMount() {
     const userLat = 43.0001;
@@ -18,7 +25,7 @@ class CourseList extends Component {
     });
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps() {
     this.setState({ coursesLoading: false });
   }
 
@@ -31,12 +38,12 @@ class CourseList extends Component {
   }
 
   render() {
-    if (this.state.coursesLoading){
-      return <Text>Loading</Text>
+    if (this.state.coursesLoading) {
+      return <Spinner />;
     }
 
     return (
-      <ScrollView style={{ backgroundColor: '#EEEEEE' }}>
+      <ScrollView>
         {this.renderCourses()}
       </ScrollView>
     );
@@ -49,4 +56,5 @@ const mapStateToProps = state => {
   return { courses, token };
 };
 
-export default connect(mapStateToProps, { courseListFetch, getUserInfo, courseImagesFetch })(CourseList);
+export default connect(mapStateToProps,
+  { courseListFetch, getUserInfo, courseImagesFetch })(CourseList);

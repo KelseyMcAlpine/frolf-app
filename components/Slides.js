@@ -1,16 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, Dimensions, Button } from 'react-native';
+import { View, Text, ScrollView, Dimensions, Button, Image } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
 
-// dimensions module -- used to get full screen width of device
 const SCREEN_WIDTH = Dimensions.get('window').width;
-
-// only want to render button on last slide
-// BUTON STYLING GOTCHA:
-// accepts Button Styling property NOT style property
-
-// no parenthesis because we dont want to call function
-// until user clicks on the button
-// onCompolete defined in welcome screen
 
 class Slides extends Component {
   renderLastSlide(index) {
@@ -27,13 +19,17 @@ class Slides extends Component {
   }
 
   renderSlides() {
+    const { slideStyle, slideHeading, iconContainer, imageStyle } = styles;
     return this.props.data.map((slide, index) => {
       return (
         <View
-          key={slide.text}
-          style={[styles.slideStyle, { backgroundColor: slide.color }]}
+          key={slide.heading}
+          style={[slideStyle, { backgroundColor: slide.color }]}
         >
-          <Text style={styles.slideText}>{slide.text}</Text>
+          <View style={iconContainer}>
+            <Image source={slide.imageURL} style={imageStyle} />
+          </View>
+          <Text style={slideHeading}>{slide.heading}</Text>
           {this.renderLastSlide(index)}
         </View>
       );
@@ -46,7 +42,10 @@ class Slides extends Component {
         horizontal
         style={{ flex: 1 }}
         pagingEnabled
-        showsHorizontalScrollIndicator
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        bounces={false}
+        scrollsToTop={false}
         indicatorStyle='white'
       >
         {this.renderSlides()}
@@ -58,19 +57,34 @@ class Slides extends Component {
 const styles = {
   slideStyle: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
+    marginTop: 36,
     alignItems: 'center',
     width: SCREEN_WIDTH,
   },
-  slideText: {
+  slideHeading: {
     color: 'white',
     fontSize: 30,
-    textAlign: 'center'
+    textAlign: 'center',
   },
   buttonStyle: {
     backgroundColor: '#0288D1',
     marginTop: 15,
   },
+  iconContainer: {
+    marginBottom: 36,
+    // backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    borderRadius: 500,
+    height: 200,
+    width: 200,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  imageStyle: {
+    flex: 1,
+    width: 200,
+    height: 200
+  }
 };
 
 export default Slides;
