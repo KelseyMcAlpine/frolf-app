@@ -136,7 +136,7 @@ class GamePlay extends Component {
     }
     return (
       <Button onPress={this.onPressNextHole.bind(this)}>
-        SAVE SCORECARD
+        END GAME
       </Button>
     );
   }
