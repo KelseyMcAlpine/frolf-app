@@ -59,7 +59,7 @@ const RouterComponent = () => {
           component={ScorecardsList}
           title="Scorecard History"
           sceneStyle={sceneStyle}
-          onLeft={() => Actions.courseList({ type: 'reset' })}
+          onLeft={() => Actions.courseList()}
           leftTitle="Done"
         />
         <Scene
