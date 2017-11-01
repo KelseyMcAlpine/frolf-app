@@ -8,19 +8,20 @@ import { Card, CardSection, ImageSection, Rating } from './common';
 class CourseListItem extends Component {
 
   onRowPress = () => {
-    const { course_id, distance } = this.props.course;
-    this.props.courseDetailsFetch(course_id, distance, () => { Actions.courseDetails(); });
+    console.log('course', this.props.course);
+    const { id, distance } = this.props.course;
+    this.props.courseDetailsFetch(id, distance, () => { Actions.courseDetails(); });
   }
 
   render() {
-    const { name, rating, image, distance } = this.props.course;
+    const { name, rating, imageURL, distance } = this.props.course;
     const { titleStyle, titleContainer, subTitleSyle, subTitleContainer } = styles;
 
     return (
       <TouchableWithoutFeedback onPress={this.onRowPress}>
         <View>
           <Card>
-            <ImageSection imageURL='https://www.dgcoursereview.com/course_pics/5/710589e1_m.jpg' />
+            <ImageSection imageURL={imageURL} />
 
             <CardSection style={titleContainer}>
               <Text style={titleStyle}>{name}</Text>

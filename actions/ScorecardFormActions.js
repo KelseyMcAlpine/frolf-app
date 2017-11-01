@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 import axios from 'axios';
-// import { DG_API_KEY, DG_HOLE_DETAILS_SIG } from 'react-native-dotenv';
+import { DG_API_KEY, DG_HOLE_DETAILS_SIG } from 'react-native-dotenv';
 import { Actions } from 'react-native-router-flux';
 import {
   CREATE_SCORECARD_FORM_SUCCESS,
@@ -15,17 +15,16 @@ export const savePlayers = ({ players }) => {
   };
 };
 
-export const createScorecardForm = ({ courseId }) => {
+export const createScorecardForm = (courseId) => {
   return (dispatch) => {
-    axios.get('https://api.myjson.com/bins/pqvsb')
-    // axios.get('https://www.dgcoursereview.com/api_test/index.php', {
-    //     params: {
-    //       key: DG_API_KEY,
-    //       mode: 'holeinfo',
-    //       id: courseId,
-    //       sig: DG_HOLE_DETAILS_SIG
-    //     }
-    //   })
+    axios.get('https://www.dgcoursereview.com/api_test/index.php', {
+        params: {
+          key: DG_API_KEY,
+          mode: 'holeinfo',
+          id: courseId,
+          sig: DG_HOLE_DETAILS_SIG
+        }
+      })
       .then((response) => {
         dispatch({
           type: CREATE_SCORECARD_FORM_SUCCESS,

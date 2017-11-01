@@ -48,7 +48,8 @@ class CourseDetails extends Component {
   }
 
   onPressStart() {
-    this.props.createScorecardForm({ courseId: this.props.courseId });
+    const courseId = this.props.courseDetails.course_id;
+    this.props.createScorecardForm(courseId);
   }
 
   constructImageUrl() {
